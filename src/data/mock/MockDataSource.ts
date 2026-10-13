@@ -16,9 +16,6 @@ import {
   CLIP_SEED,
   downsample,
   makeArrivals,
-  mulberry32,
-  makeDetections,
-  perArm,
   replay,
   roundRobin,
   SESSION_S,
@@ -108,9 +105,7 @@ export class MockDataSource implements DataSource {
 }
 
 function buildRoundRobinTimeline(): Decision[] {
-  const sim = simulate(roundRobin(), makeArrivals(CLIP_S, CLIP_SEED), CLIP_S, { seed: CLIP_SEED })
-  const rand = mulberry32(CLIP_SEED + 1)
-  return sim.decisions.map((d) => ({ ...d, detections: perArm((a) => makeDetections(d.vehicles[a], rand)) }))
+  return simulate(roundRobin(), makeArrivals(CLIP_S, CLIP_SEED), CLIP_S, { seed: CLIP_SEED }).decisions
 }
 
 function buildMetrics(range: MetricsRange, clipTimeline: Decision[]): Metrics {

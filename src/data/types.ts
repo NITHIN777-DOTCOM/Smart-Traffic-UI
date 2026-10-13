@@ -2,16 +2,6 @@ export type Mode = 'ppo' | 'round_robin'
 export type Arm = 'west' | 'east' | 'south'
 export type Signal = 'green' | 'yellow' | 'red'
 
-/** One detection box; x/y/w/h are fractions (0–1) of the video frame. */
-export interface Detection {
-  label: string
-  conf: number
-  x: number
-  y: number
-  w: number
-  h: number
-}
-
 /** A controller decision: `arm` gets `signal` (green) for `durationS`, starting at clip time `t`. */
 export interface Decision {
   /** Clip seconds. */
@@ -21,7 +11,6 @@ export interface Decision {
   durationS: number
   queue: Record<Arm, number>
   vehicles: Record<Arm, number>
-  detections?: Record<Arm, Detection[]>
 }
 
 export interface DeviceStatus {

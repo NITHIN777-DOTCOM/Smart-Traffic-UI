@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { ClockSnapshot } from '../../data/clock'
 import { ARM_LABEL } from '../../data/labels'
 import type { ArmSignal } from '../../data/signals'
-import type { Arm, Detection } from '../../data/types'
+import type { Arm } from '../../data/types'
 
 const VIDEO_BASE = import.meta.env.VITE_VIDEO_BASE_URL ?? `${import.meta.env.BASE_URL}videos/`
 /** Re-seek a video when it drifts this far from the shared clock. */
@@ -20,11 +20,9 @@ interface Props {
   clock: ClockSnapshot
   duration: number
   vehicles?: number
-  detections?: Detection[]
-  showBoxes: boolean
 }
 
-export function FeedCard({ arm, state, clock, duration, vehicles, detections, showBoxes }: Props) {
+export function FeedCard({ arm, state, clock, duration, vehicles }: Props) {
   const file = `approach_${arm}.mp4`
   const ref = useRef<HTMLVideoElement>(null)
   const [status, setStatus] = useState<'loading' | 'ready' | 'missing'>('loading')
@@ -75,18 +73,6 @@ export function FeedCard({ arm, state, clock, duration, vehicles, detections, sh
           LIVE
         </span>
         {vehicles !== undefined && <span className="feed-badge count num">{vehicles} vehicles</span>}
-        {showBoxes &&
-          detections?.map((b, i) => (
-            <div
-              key={i}
-              className="det-box"
-              style={{ left: `${b.x * 100}%`, top: `${b.y * 100}%`, width: `${b.w * 100}%`, height: `${b.h * 100}%` }}
-            >
-              <span>
-                {b.label} {b.conf.toFixed(2)}
-              </span>
-            </div>
-          ))}
         <div className="feed-progress" aria-hidden="true">
           <div style={{ width: `${(clock.t / duration) * 100}%` }} />
         </div>

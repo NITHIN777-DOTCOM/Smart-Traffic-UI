@@ -37,7 +37,6 @@ export function JunctionPage() {
   const snap = useClock()
   const decision = useDecision()
   const { mode } = useMode()
-  const [showBoxes, setShowBoxes] = useState(true)
 
   const decisionRef = useRef(decision)
   useEffect(() => {
@@ -60,8 +59,6 @@ export function JunctionPage() {
         clock={snap}
         duration={clock.duration}
         vehicles={decision?.vehicles[arm]}
-        detections={decision?.detections?.[arm]}
-        showBoxes={showBoxes}
       />
     )
   const road = (arm: Arm) => (
@@ -104,14 +101,6 @@ export function JunctionPage() {
           <span className="time-readout num">
             {formatClock(snap.t)} / {formatClock(clock.duration)}
           </span>
-          <button
-            type="button"
-            className={`toggle-btn${showBoxes ? ' on' : ''}`}
-            aria-pressed={showBoxes}
-            onClick={() => setShowBoxes((b) => !b)}
-          >
-            Detections
-          </button>
         </div>
       </div>
 

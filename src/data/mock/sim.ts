@@ -6,7 +6,7 @@
  * Imports carry `.ts` extensions so Node can run the generator script directly.
  */
 import { ARMS, CLEARANCE_S, YELLOW_S } from '../signals.ts'
-import type { Arm, ControllerSummary, Decision, Detection, Signal } from '../types.ts'
+import type { Arm, ControllerSummary, Decision, Signal } from '../types.ts'
 
 export const CLIP_S = 600
 export const SESSION_S = 3600
@@ -18,9 +18,9 @@ const SAT_FLOW = 0.55
 /** Mean arrivals per second before surges. */
 const BASE_DEMAND: Record<Arm, number> = { west: 0.12, east: 0.095, south: 0.055 }
 
-export type Rand = () => number
+type Rand = () => number
 
-export function mulberry32(seed: number): Rand {
+function mulberry32(seed: number): Rand {
   let a = seed >>> 0
   return () => {
     a = (a + 0x6d2b79f5) >>> 0
@@ -31,7 +31,7 @@ export function mulberry32(seed: number): Rand {
   }
 }
 
-export const perArm = <T,>(f: (arm: Arm) => T): Record<Arm, T> => ({
+const perArm = <T,>(f: (arm: Arm) => T): Record<Arm, T> => ({
   west: f('west'),
   east: f('east'),
   south: f('south'),
@@ -92,21 +92,6 @@ export const replay = (timeline: Decision[]): Controller => {
   return { next: () => timeline[Math.min(i++, timeline.length - 1)] }
 }
 
-export function makeDetections(vehicles: number, rand: Rand): Detection[] {
-  const labels = ['car', 'car', 'car', 'bike', 'bike', 'auto', 'bus']
-  return Array.from({ length: Math.min(vehicles, 4) }, () => {
-    const w = 0.08 + rand() * 0.08
-    return {
-      label: labels[Math.floor(rand() * labels.length)],
-      conf: Math.round((0.78 + rand() * 0.19) * 100) / 100,
-      x: Math.round((0.05 + rand() * (0.85 - w)) * 1000) / 1000,
-      y: Math.round((0.38 + rand() * 0.34) * 1000) / 1000,
-      w: Math.round(w * 1000) / 1000,
-      h: Math.round(w * 1.3 * 1000) / 1000,
-    }
-  })
-}
-
 export interface SimResult {
   horizonS: number
   decisions: Decision[]
@@ -122,7 +107,7 @@ export function simulate(
   controller: Controller,
   arrivals: Record<Arm, Uint8Array>,
   horizonS: number,
-  opts: { seed?: number; detections?: boolean } = {},
+  opts: { seed?: number } = {},
 ): SimResult {
   const rand = mulberry32(opts.seed ?? 1)
   const queue = perArm(() => 0)
@@ -149,7 +134,6 @@ export function simulate(
       durationS,
       queue: { ...queue },
       vehicles,
-      ...(opts.detections ? { detections: perArm((a) => makeDetections(vehicles[a], rand)) } : {}),
     })
     last = arm
 
