@@ -2,6 +2,13 @@
   max-width: 1320px;
 }
 
+.dash-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
 .dash-controls {
   display: flex;
   flex-wrap: wrap;

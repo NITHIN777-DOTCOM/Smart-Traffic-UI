@@ -26,6 +26,26 @@ import {
 
 /** Simulated Pi round-trip plus clearance before a mode switch is confirmed. */
 const SWITCH_LATENCY_MS = 1800
+/** The mock remembers its mode across refreshes, like the real controller would. */
+const MODE_KEY = 'stc.mockMode'
+
+function loadMode(): Mode {
+  try {
+    const m = localStorage.getItem(MODE_KEY)
+    if (m === 'ppo' || m === 'round_robin') return m
+  } catch {
+    // Storage blocked (private window, previews): fall back to the default.
+  }
+  return 'ppo'
+}
+
+function saveMode(m: Mode): void {
+  try {
+    localStorage.setItem(MODE_KEY, m)
+  } catch {
+    // Not persisted; the mode still applies for this page load.
+  }
+}
 
 const minutesAgo = (m: number) => new Date(Date.now() - m * 60_000).toISOString()
 const delay = <T,>(value: T, ms = 120) => new Promise<T>((r) => setTimeout(() => r(value), ms))
@@ -35,12 +55,13 @@ const delay = <T,>(value: T, ms = 120) => new Promise<T>((r) => setTimeout(() =>
  * clock; round-robin mode runs the fixed West → East → South cycle.
  */
 export class MockDataSource implements DataSource {
-  private mode: Mode = 'ppo'
+  private mode: Mode = loadMode()
+  // Newest first, ending in the current mode.
   private history: ModeChange[] = [
-    { at: minutesAgo(4), from: 'round_robin', to: 'ppo', source: 'from this dashboard' },
-    { at: minutesAgo(19), from: 'ppo', to: 'round_robin', source: 'from this dashboard' },
-    { at: minutesAgo(42), to: 'round_robin', source: 'on boot' },
-  ]
+    { at: minutesAgo(4), from: 'round_robin' as const, to: 'ppo' as const, source: 'from this dashboard' },
+    { at: minutesAgo(19), from: 'ppo' as const, to: 'round_robin' as const, source: 'from this dashboard' },
+    { at: minutesAgo(42), to: 'round_robin' as const, source: 'on boot' },
+  ].filter((h, i) => i > 0 || h.to === this.mode)
   private readonly timelines: Record<Mode, Decision[]>
   private readonly clock: ClipClock
   private readonly listeners = new Set<() => void>()
@@ -61,6 +82,7 @@ export class MockDataSource implements DataSource {
     await delay(null, SWITCH_LATENCY_MS)
     this.history.unshift({ at: new Date().toISOString(), from: this.mode, to: m, source: 'from this dashboard' })
     this.mode = m
+    saveMode(m)
     this.listeners.forEach((l) => l())
     return m
   }
@@ -124,6 +146,6 @@ function buildMetrics(range: MetricsRange, clipTimeline: Decision[]): Metrics {
     ppo: summarise(ppo),
     roundRobin: summarise(rr),
     queueSeries: ppoSeries.map((p, i) => ({ t: p.t, ppo: p.v, roundRobin: rrSeries[i].v })),
-    decisions: range === 'clip' ? clipTimeline : ppo.decisions,
+    decisions: { ppo: range === 'clip' ? clipTimeline : ppo.decisions, roundRobin: rr.decisions },
   }
 }

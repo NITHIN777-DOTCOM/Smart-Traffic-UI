@@ -54,8 +54,8 @@ export interface Metrics {
   roundRobin: ControllerSummary
   /** Total vehicles queued across all arms, sampled over the range. */
   queueSeries: { t: number; ppo: number; roundRobin: number }[]
-  /** PPO decisions in the range, oldest first. */
-  decisions: Decision[]
+  /** Each controller's decisions in the range, oldest first. */
+  decisions: { ppo: Decision[]; roundRobin: Decision[] }
 }
 
 export interface DataSource {

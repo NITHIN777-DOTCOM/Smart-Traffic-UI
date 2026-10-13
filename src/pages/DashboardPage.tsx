@@ -12,10 +12,10 @@ import {
   YAxis,
 } from 'recharts'
 import { METRICS, type MetricDef } from '../config/metrics'
-import { useMetrics } from '../data/hooks'
-import { ARM_LABEL, SIGNAL_LABEL } from '../data/labels'
+import { useMetrics, useMode } from '../data/hooks'
+import { ARM_LABEL, MODE_LABEL, SIGNAL_LABEL } from '../data/labels'
 import { ARMS, formatClock } from '../data/signals'
-import type { Metrics, MetricsRange } from '../data/types'
+import type { Metrics, MetricsRange, Mode } from '../data/types'
 import './dashboard.css'
 
 const RANGES: { id: MetricsRange; label: string }[] = [
@@ -42,16 +42,24 @@ const LEGEND = {
   iconSize: 12,
   formatter: (v: string) => <span style={{ color: 'var(--text)' }}>{v}</span>,
 }
+/** The mode that isn't running stays visible for comparison, but dimmed. */
+const INACTIVE_OPACITY = 0.4
+
+const summaryKey = (mode: Mode) => (mode === 'round_robin' ? 'roundRobin' : 'ppo')
 
 export function DashboardPage() {
   const [range, setRange] = useState<MetricsRange>('clip')
   const { data: m, error } = useMetrics(range)
+  const { mode } = useMode()
 
   return (
     <main className="page dashboard-page">
       <div className="page-head">
         <div className="page-title">
-          <h1>Performance Dashboard</h1>
+          <div className="dash-title-row">
+            <h1>Performance Dashboard</h1>
+            {mode && <span className="pill pill-accent">Currently running: {MODE_LABEL[mode]}</span>}
+          </div>
           <p>PPO model vs round robin on the same three feeds</p>
         </div>
         <div className="dash-controls">
@@ -82,8 +90,8 @@ export function DashboardPage() {
               <KpiTile key={def.id} def={def} m={m} />
             ))}
           </section>
-          <Charts m={m} />
-          <DecisionTable m={m} />
+          <Charts m={m} mode={mode} />
+          <DecisionTable m={m} mode={mode ?? 'ppo'} />
         </>
       )}
     </main>
@@ -113,7 +121,9 @@ function KpiTile({ def, m }: { def: MetricDef; m: Metrics }) {
   )
 }
 
-function Charts({ m }: { m: Metrics }) {
+function Charts({ m, mode }: { m: Metrics; mode: Mode | null }) {
+  const opacity = (series: Mode) => (!mode || mode === series ? 1 : INACTIVE_OPACITY)
+  const share = m[summaryKey(mode ?? 'ppo')].perArm
   const minutes = (t: number) => `${Math.round(t / 60)} min`
   const perArm = ARMS.map((arm) => ({
     arm: ARM_LABEL[arm],
@@ -121,11 +131,10 @@ function Charts({ m }: { m: Metrics }) {
     rrThroughput: m.roundRobin.perArm[arm].throughputPerH,
     ppoWait: m.ppo.perArm[arm].avgWaitS,
     rrWait: m.roundRobin.perArm[arm].avgWaitS,
-    green: Math.round(m.ppo.perArm[arm].share.green * 100),
-    yellow: Math.round(m.ppo.perArm[arm].share.yellow * 100),
+    green: Math.round(share[arm].share.green * 100),
+    yellow: Math.round(share[arm].share.yellow * 100),
     // Derived so the three segments always total exactly 100%.
-    red:
-      100 - Math.round(m.ppo.perArm[arm].share.green * 100) - Math.round(m.ppo.perArm[arm].share.yellow * 100),
+    red: 100 - Math.round(share[arm].share.green * 100) - Math.round(share[arm].share.yellow * 100),
   }))
 
   return (
@@ -142,6 +151,7 @@ function Charts({ m }: { m: Metrics }) {
             dataKey="ppo"
             name="PPO model"
             stroke="var(--accent)"
+            strokeOpacity={opacity('ppo')}
             strokeWidth={2}
             dot={false}
             activeDot={{ r: 4 }}
@@ -151,6 +161,7 @@ function Charts({ m }: { m: Metrics }) {
             dataKey="roundRobin"
             name="Round robin"
             stroke="var(--rr-line)"
+            strokeOpacity={opacity('round_robin')}
             strokeWidth={2}
             strokeDasharray="6 5"
             dot={false}
@@ -166,8 +177,8 @@ function Charts({ m }: { m: Metrics }) {
           <YAxis {...AXIS} />
           <Tooltip {...TOOLTIP} />
           <Legend {...LEGEND} />
-          <Bar isAnimationActive={false} dataKey="ppoThroughput" name="PPO model" fill="var(--accent)" radius={[4, 4, 0, 0]} />
-          <Bar isAnimationActive={false} dataKey="rrThroughput" name="Round robin" fill="var(--rr-bar)" radius={[4, 4, 0, 0]} />
+          <Bar isAnimationActive={false} dataKey="ppoThroughput" name="PPO model" fill="var(--accent)" fillOpacity={opacity('ppo')} radius={[4, 4, 0, 0]} />
+          <Bar isAnimationActive={false} dataKey="rrThroughput" name="Round robin" fill="var(--rr-bar)" fillOpacity={opacity('round_robin')} radius={[4, 4, 0, 0]} />
         </BarChart>
       </ChartCard>
 
@@ -178,12 +189,12 @@ function Charts({ m }: { m: Metrics }) {
           <YAxis type="category" dataKey="arm" {...AXIS} width={56} />
           <Tooltip {...TOOLTIP} formatter={(v) => `${v} s`} />
           <Legend {...LEGEND} />
-          <Bar isAnimationActive={false} dataKey="ppoWait" name="PPO model" fill="var(--accent)" radius={[0, 4, 4, 0]} />
-          <Bar isAnimationActive={false} dataKey="rrWait" name="Round robin" fill="var(--rr-bar)" radius={[0, 4, 4, 0]} />
+          <Bar isAnimationActive={false} dataKey="ppoWait" name="PPO model" fill="var(--accent)" fillOpacity={opacity('ppo')} radius={[0, 4, 4, 0]} />
+          <Bar isAnimationActive={false} dataKey="rrWait" name="Round robin" fill="var(--rr-bar)" fillOpacity={opacity('round_robin')} radius={[0, 4, 4, 0]} />
         </BarChart>
       </ChartCard>
 
-      <ChartCard title="Signal time share" sub="PPO model, % of the range">
+      <ChartCard title="Signal time share" sub={`${MODE_LABEL[mode ?? 'ppo']}, % of the range`}>
         <BarChart data={perArm} layout="vertical" margin={{ top: 8, right: 16, bottom: 0, left: 0 }}>
           <XAxis type="number" {...AXIS} domain={[0, 100]} ticks={[0, 25, 50, 75, 100]} tickFormatter={(v) => `${v}%`} />
           <YAxis type="category" dataKey="arm" {...AXIS} width={56} />
@@ -223,12 +234,16 @@ function ChartCard({ title, sub, children }: { title: string; sub: string; child
   )
 }
 
-function DecisionTable({ m }: { m: Metrics }) {
+function DecisionTable({ m, mode }: { m: Metrics; mode: Mode }) {
+  const decisions = m.decisions[summaryKey(mode)]
   return (
     <section aria-label="Decision log" className="card decisions">
       <div className="chart-head">
         <h2>Model decisions</h2>
-        <span className="muted num">{m.decisions.length} decisions</span>
+        <span className="muted num">
+          {mode === 'round_robin' ? 'Fixed cycle · ' : ''}
+          {decisions.length} decisions
+        </span>
       </div>
       <div className="table-scroll">
         <table>
@@ -242,7 +257,7 @@ function DecisionTable({ m }: { m: Metrics }) {
             </tr>
           </thead>
           <tbody>
-            {m.decisions.map((d) => (
+            {decisions.map((d) => (
               <tr key={d.t}>
                 <td className="num">{formatClock(d.t)}</td>
                 <td>{ARM_LABEL[d.arm]}</td>
