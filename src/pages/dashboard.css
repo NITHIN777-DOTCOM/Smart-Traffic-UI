@@ -1,0 +1,149 @@
+.dashboard-page {
+  max-width: 1320px;
+}
+
+.dash-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.sample-pill {
+  padding: 8px 14px;
+  border: 1px dashed var(--accent);
+  color: var(--accent-light);
+  font-size: 14px;
+  white-space: normal;
+}
+
+.segmented {
+  display: flex;
+  padding: 4px;
+  border-radius: var(--radius-button-lg);
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.segmented button {
+  padding: 10px 16px;
+  border-radius: var(--radius-button);
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.segmented button.on {
+  background: var(--road);
+  color: var(--text);
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: 16px;
+}
+
+.kpi {
+  gap: 10px;
+}
+
+.kpi-label {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.kpi-value {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.kpi-sub {
+  font-size: 14px;
+}
+
+.kpi-sub.good {
+  color: var(--accent-light);
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(520px, 100%), 1fr));
+  gap: 24px;
+}
+
+.chart-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.chart-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.chart-head h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.chart-head span {
+  font-size: 13px;
+}
+
+.chart-body {
+  height: 260px;
+}
+
+.decisions {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.table-scroll {
+  overflow: auto;
+  max-height: 440px;
+}
+
+.decisions table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.decisions th {
+  position: sticky;
+  top: 0;
+  background: var(--card);
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.decisions td {
+  padding: 12px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.decisions tr:last-child td {
+  border-bottom: none;
+}
+
+.sig-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
