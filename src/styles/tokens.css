@@ -1,0 +1,39 @@
+/* Design tokens — the only colours, radii and fonts the app uses. */
+:root {
+  --bg: #141414;
+  --header: #1a1a1a;
+  --card: #1c1c1c;
+  --border: #2c2c2c;
+  --divider: #2a2a2a;
+  --text: #ececec;
+  --muted: #a8a8a8;
+  --accent: #5f9ea0;
+  --on-accent: #0d1717;
+  --accent-light: #8cc4c6;
+
+  --sig-green: #22c55e;
+  --sig-yellow: #facc15;
+  --sig-red: #ef4444;
+  --sig-green-off: #173822;
+  --sig-yellow-off: #3d3613;
+  --sig-red-off: #3d1616;
+
+  --road: #2e2e2e;
+  --sidewalk: #1f1f1f;
+  --lane-mark: #8a8a8a;
+  --stop-line: #e6e6e6;
+
+  /* Round-robin series in charts */
+  --rr-line: #8a8a8a;
+  --rr-bar: #5a5a5a;
+
+  --font: 'Anthropic Sans', 'Styrene B', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-card: 16px;
+  --radius-tile: 14px;
+  --radius-button: 10px;
+  --radius-button-lg: 12px;
+  --radius-pill: 20px;
+
+  color-scheme: dark;
+}
