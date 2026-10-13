@@ -53,3 +53,8 @@ desktop.ini
 .cache/
 .temp/
 tmp/
+
+# Demo camera clips (~125 MB each, over GitHub's 100 MB limit) — drop them in locally
+videos/*
+!videos/.gitkeep
+public/videos/*.mp4
