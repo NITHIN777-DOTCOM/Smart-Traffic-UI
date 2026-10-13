@@ -5,8 +5,12 @@ import type { ArmSignal } from '../../data/signals'
 import type { Arm } from '../../data/types'
 
 const VIDEO_BASE = import.meta.env.VITE_VIDEO_BASE_URL ?? `${import.meta.env.BASE_URL}videos/`
-/** Re-seek a video when it drifts this far from the shared clock. */
-const MAX_DRIFT_S = 0.75
+/** Hard-seek a video only when it drifts this far from the shared clock (seeking flashes the frame). */
+const MAX_DRIFT_S = 1.5
+/** Smaller drift is corrected by nudging playback speed instead… */
+const NUDGE_DRIFT_S = 0.25
+/** …until it is back within this, so the rate doesn't flip back and forth at the threshold. */
+const IN_SYNC_S = 0.1
 
 function signalChip({ signal, leftS }: ArmSignal): string {
   const s = Math.ceil(leftS)
@@ -33,9 +37,16 @@ export function FeedCard({ arm, state, clock, duration, vehicles }: Props) {
     const v = ref.current
     if (!v || status !== 'ready') return
     const target = clock.t % (Number.isFinite(v.duration) && v.duration > 0 ? v.duration : duration)
-    if (clock.seekId !== lastSeek.current || Math.abs(v.currentTime - target) > MAX_DRIFT_S) {
+    const drift = v.currentTime - target
+    if (clock.seekId !== lastSeek.current || Math.abs(drift) > MAX_DRIFT_S) {
       if (!v.seeking) v.currentTime = target
+      v.playbackRate = 1
       lastSeek.current = clock.seekId
+    } else if (Math.abs(drift) > NUDGE_DRIFT_S || (v.playbackRate !== 1 && Math.abs(drift) > IN_SYNC_S)) {
+      const rate = drift < 0 ? 1.05 : 0.95
+      if (v.playbackRate !== rate) v.playbackRate = rate
+    } else if (v.playbackRate !== 1) {
+      v.playbackRate = 1
     }
     if (clock.playing && v.paused) v.play().catch(() => {})
     if (!clock.playing && !v.paused) v.pause()

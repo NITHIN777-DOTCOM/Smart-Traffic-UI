@@ -12,7 +12,9 @@ interface CarProps {
 export function Car({ color, braking, facing, x, y, opacity }: CarProps) {
   const brake = braking ? 'var(--sig-red)' : 'var(--sig-red-off)'
   const flip = facing === 'left' ? ' scaleX(-1)' : facing === 'down' ? ' scaleY(-1)' : ''
-  const style = { transform: `translate(${x}px, ${y}px)${flip}`, opacity }
+  // Snap to half pixels so slow-moving cars don't shimmer between sub-pixel positions.
+  const px = (n: number) => Math.round(n * 2) / 2
+  const style = { transform: `translate(${px(x)}px, ${px(y)}px)${flip}`, opacity }
 
   if (facing === 'left' || facing === 'right') {
     return (

@@ -16,6 +16,10 @@ const V_MAX = 110 // px/s
 const ACCEL = 70
 const BRAKE = 160 // comfortable deceleration used to plan stops
 const BRAKE_HARD = 420
+/** Brake lights come on above this deceleration (px/s²)… */
+const BRAKE_LIGHT_DECEL = 30
+/** …and stay on until the car has stopped braking for this long, so they don't flicker. */
+const BRAKE_LIGHT_HOLD_S = 0.3
 /** Distance from the junction edge to where a stopped car's front bumper rests. */
 export const STOP_OFFSET = 18
 /** On yellow, cars this close to the stop line keep going. */
@@ -35,6 +39,8 @@ export interface CarView {
 
 interface SimCar extends CarView {
   v: number
+  /** Seconds the brake-light condition has been false. */
+  brakeOffFor: number
 }
 
 interface Lane {
@@ -61,7 +67,8 @@ export class TrafficEngine {
   private lastNow = 0
   private lastClipT = 0
   private lastSeekId = -1
-  private needsReset = true
+  /** Arms whose scene must be rebuilt (first layout, or all of them after a seek). */
+  private needsReset = new Set<Arm>(ARMS)
   private readonly clock: ClipClock
   private readonly getInputs: () => TrafficInputs
 
@@ -89,9 +96,17 @@ export class TrafficEngine {
   }
 
   setLength(arm: Arm, px: number): void {
-    if (Math.abs(this.lengths[arm] - px) < 1) return
+    const old = this.lengths[arm]
+    if (Math.abs(old - px) < 1) return
     this.lengths[arm] = px
-    this.needsReset = true
+    if (old <= 0) {
+      this.needsReset.add(arm)
+      return
+    }
+    // A resize (e.g. a scrollbar appearing) keeps the scene: stretch positions to the new length.
+    const k = px / old
+    for (const car of this.incoming[arm].cars) car.s *= k
+    for (const car of this.outgoing[arm].cars) car.s *= k
   }
 
   subscribe = (cb: () => void): (() => void) => {
@@ -109,14 +124,16 @@ export class TrafficEngine {
     const snap = this.clock.getSnapshot()
     const t = this.clock.now()
     // Seeking (or a large jump) rebuilds the scene from the current signal state.
-    if (snap.seekId !== this.lastSeekId || Math.abs(t - this.lastClipT) > 3) this.needsReset = true
+    // The >3 s check catches the clip looping back to 0:00 and a backgrounded tab resuming.
+    if (snap.seekId !== this.lastSeekId || Math.abs(t - this.lastClipT) > 3) ARMS.forEach((a) => this.needsReset.add(a))
     this.lastSeekId = snap.seekId
     this.lastClipT = t
 
     const inputs = this.getInputs()
-    if (this.needsReset) {
-      this.reset(inputs)
-      this.needsReset = false
+    for (const arm of this.needsReset) {
+      if (this.lengths[arm] <= 0) continue
+      this.reset(arm, inputs[arm])
+      this.needsReset.delete(arm)
     }
     if (snap.playing && dt > 0) {
       for (const arm of ARMS) {
@@ -131,28 +148,24 @@ export class TrafficEngine {
 
   private newCar(s: number, v: number): SimCar {
     const id = this.nextId++
-    return { id, s, v, color: COLORS[id % COLORS.length], braking: v === 0, opacity: 1 }
+    return { id, s, v, color: COLORS[id % COLORS.length], braking: v === 0, brakeOffFor: 0, opacity: 1 }
   }
 
   private capacity(arm: Arm): number {
     return Math.max(0, Math.floor((this.lengths[arm] - STOP_OFFSET) / (CAR_LEN + GAP)))
   }
 
-  private reset(inputs: TrafficInputs): void {
-    for (const arm of ARMS) {
-      const len = this.lengths[arm]
-      const lane = this.incoming[arm]
-      lane.cars = []
-      lane.spawnIn = 0.5
-      this.outgoing[arm].cars = []
-      if (len <= 0) continue
-      const { signal, targetQueue } = inputs[arm]
-      if (signal === 'green') {
-        for (let s = len - 80; s > CAR_LEN; s -= 150 + Math.random() * 80) lane.cars.push(this.newCar(s, V_MAX))
-      } else {
-        const n = Math.min(this.capacity(arm), Math.round(targetQueue))
-        for (let i = 0; i < n; i++) lane.cars.push(this.newCar(len - STOP_OFFSET - i * (CAR_LEN + GAP), 0))
-      }
+  private reset(arm: Arm, { signal, targetQueue }: ArmInput): void {
+    const len = this.lengths[arm]
+    const lane = this.incoming[arm]
+    lane.cars = []
+    lane.spawnIn = 0.5
+    this.outgoing[arm].cars = []
+    if (signal === 'green') {
+      for (let s = len - 80; s > CAR_LEN; s -= 150 + Math.random() * 80) lane.cars.push(this.newCar(s, V_MAX))
+    } else {
+      const n = Math.min(this.capacity(arm), Math.round(targetQueue))
+      for (let i = 0; i < n; i++) lane.cars.push(this.newCar(len - STOP_OFFSET - i * (CAR_LEN + GAP), 0))
     }
   }
 
@@ -162,19 +175,33 @@ export class TrafficEngine {
     const lane = this.incoming[arm]
 
     lane.cars.forEach((car, i) => {
+      // The nearer of the leader's rear bumper and (if we must stop) the stop line.
       let limit = Infinity
-      if (i > 0) limit = lane.cars[i - 1].s - CAR_LEN - GAP
+      let limitV = V_MAX
+      if (i > 0) {
+        const leader = lane.cars[i - 1]
+        limit = leader.s - CAR_LEN - GAP
+        limitV = leader.v
+      }
       const beforeLine = car.s <= stopAt + 0.5
       const mustStop =
         beforeLine && (input.signal === 'red' || (input.signal === 'yellow' && car.s < stopAt - YELLOW_COMMIT))
-      if (mustStop) limit = Math.min(limit, stopAt)
+      if (mustStop && stopAt < limit) {
+        limit = stopAt
+        limitV = 0
+      }
 
+      // Fastest speed that can still slow to the limit's own speed in the remaining gap.
       const dist = limit - car.s
-      const vTarget = Math.min(V_MAX, Math.sqrt(2 * BRAKE * Math.max(0, dist - 0.5)))
+      const vTarget =
+        limit === Infinity ? V_MAX : Math.min(V_MAX, Math.sqrt(limitV ** 2 + 2 * BRAKE * Math.max(0, dist - 0.5)))
       const prev = car.v
-      car.v = car.v < vTarget ? Math.min(vTarget, car.v + ACCEL * dt) : Math.max(vTarget, car.v - BRAKE_HARD * dt)
+      car.v += Math.min(Math.max(vTarget - car.v, -BRAKE_HARD * dt), ACCEL * dt)
       car.s = Math.min(car.s + car.v * dt, limit)
-      car.braking = beforeLine && (car.v < prev - 0.01 || car.v < 3)
+
+      const braking = beforeLine && ((prev - car.v) / dt > BRAKE_LIGHT_DECEL || car.v < 3)
+      car.brakeOffFor = braking ? 0 : car.brakeOffFor + dt
+      car.braking = braking || (car.braking && car.brakeOffFor < BRAKE_LIGHT_HOLD_S)
       car.opacity = car.s > len ? Math.max(0, 1 - (car.s - len) / FADE_OUT) : 1
     })
     lane.cars = lane.cars.filter((c) => c.s < len + FADE_OUT)
