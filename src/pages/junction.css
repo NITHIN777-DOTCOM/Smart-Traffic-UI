@@ -1,0 +1,539 @@
+.junction-page {
+  gap: 20px;
+}
+
+.junction-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.mode-pill {
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+.time-readout {
+  padding: 12px 16px;
+  border-radius: var(--radius-button-lg);
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-size: 15px;
+}
+
+.toggle-btn {
+  height: 48px;
+  padding: 0 16px;
+  border-radius: var(--radius-button-lg);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.toggle-btn.on {
+  border-color: var(--accent);
+  color: var(--accent-light);
+}
+
+.scrub input {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Junction grid ---------- */
+
+.junction-scroll {
+  overflow-x: auto;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.junction-grid {
+  min-width: 1180px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 296px minmax(0, 1fr);
+  grid-template-rows: auto 296px auto;
+}
+
+.cell {
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.cell.align-end {
+  align-items: flex-end;
+}
+
+.cell > * {
+  width: 100%;
+}
+
+.north-footpath {
+  background: var(--sidewalk);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 15px;
+}
+
+/* ---------- Road arms ---------- */
+
+.arm {
+  display: flex;
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.arm-west,
+.arm-east {
+  flex-direction: column;
+}
+
+.arm-south {
+  min-height: 400px;
+}
+
+.sidewalk-h {
+  position: relative;
+  height: 48px;
+  background: var(--sidewalk);
+}
+
+.sidewalk-v {
+  position: relative;
+  width: 48px;
+  flex: none;
+  background: var(--sidewalk);
+}
+
+.road {
+  position: relative;
+  background: var(--road);
+}
+
+.road-west,
+.road-east {
+  height: 200px;
+}
+
+.road-south {
+  width: 200px;
+  flex: none;
+}
+
+/* Cars may drive on into the junction square (and fade), but never out the far end. */
+.road-west {
+  clip-path: inset(0 -300px 0 0);
+}
+
+.road-east {
+  clip-path: inset(0 0 0 -300px);
+}
+
+.road-south {
+  clip-path: inset(-300px 0 0 0);
+}
+
+.centre-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.centre-line line {
+  stroke: var(--lane-mark);
+  stroke-width: 3;
+  stroke-dasharray: 24 20;
+}
+
+.stop-line {
+  position: absolute;
+  background: var(--stop-line);
+}
+
+.stop-west {
+  right: 10px;
+  top: 0;
+  width: 6px;
+  height: 100px;
+}
+
+.stop-east {
+  left: 10px;
+  top: 100px;
+  width: 6px;
+  height: 100px;
+}
+
+.stop-south {
+  left: 0;
+  top: 10px;
+  width: 100px;
+  height: 6px;
+}
+
+.car {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+}
+
+.arm-label {
+  position: absolute;
+  top: 15px;
+  left: 24px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+.arm-label-east {
+  left: auto;
+  right: 24px;
+}
+
+.arm-label-south {
+  top: auto;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  text-align: center;
+  z-index: 1;
+}
+
+.head-west {
+  position: absolute;
+  right: 14px;
+  top: 7px;
+}
+
+.head-east {
+  position: absolute;
+  left: 14px;
+  top: 7px;
+}
+
+.head-south {
+  position: absolute;
+  left: 7px;
+  top: 12px;
+}
+
+/* ---------- Signal head ---------- */
+
+.signal-head {
+  display: flex;
+  gap: 6px;
+  padding: 5px 8px;
+  border-radius: 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.signal-head.vertical {
+  flex-direction: column;
+  padding: 8px 5px;
+}
+
+.lamp {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: block;
+  transition:
+    background 0.15s,
+    box-shadow 0.15s;
+}
+
+.lamp-red {
+  background: var(--sig-red-off);
+}
+
+.lamp-yellow {
+  background: var(--sig-yellow-off);
+}
+
+.lamp-green {
+  background: var(--sig-green-off);
+}
+
+.lamp-red.lit {
+  background: var(--sig-red);
+  box-shadow: 0 0 14px var(--sig-red);
+}
+
+.lamp-yellow.lit {
+  background: var(--sig-yellow);
+  box-shadow: 0 0 14px var(--sig-yellow);
+}
+
+.lamp-green.lit {
+  background: var(--sig-green);
+  box-shadow: 0 0 14px var(--sig-green);
+}
+
+/* ---------- Intersection ---------- */
+
+.intersection {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidewalk-strip {
+  height: 48px;
+  background: var(--sidewalk);
+}
+
+.intersection-bottom .sidewalk-strip {
+  width: 48px;
+}
+
+.intersection-road {
+  height: 200px;
+  background: var(--road);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+.intersection-bottom {
+  height: 48px;
+  display: flex;
+}
+
+.intersection-stem {
+  flex: 1;
+  background: var(--road);
+}
+
+/* ---------- Feed cards ---------- */
+
+.feed-card {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feed-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.feed-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.feed-title h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.feed-title span {
+  font-size: 13px;
+}
+
+.sig-chip {
+  padding: 7px 12px;
+  border-radius: var(--radius-pill);
+  color: var(--on-accent);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sig-green {
+  background: var(--sig-green);
+}
+
+.sig-yellow {
+  background: var(--sig-yellow);
+}
+
+.sig-red {
+  background: var(--sig-red);
+}
+
+.feed-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.feed-frame video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feed-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.feed-hint {
+  font-size: 12px;
+}
+
+.feed-badge {
+  position: absolute;
+  top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: var(--header);
+  font-size: 12px;
+}
+
+.feed-badge.live {
+  left: 12px;
+  font-weight: 600;
+}
+
+.feed-badge.count {
+  right: 12px;
+}
+
+.det-box {
+  position: absolute;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+}
+
+.det-box span {
+  position: absolute;
+  left: -2px;
+  top: -20px;
+  padding: 1px 6px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.feed-progress {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+}
+
+.feed-progress div {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+/* ---------- Decision card ---------- */
+
+.decision-card {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.decision-card h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.decision-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 15px;
+}
+
+.decision-text {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.decision-arms {
+  list-style: none;
+  margin: 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--divider);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.decision-arms li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.txt-green,
+.txt-yellow,
+.txt-red {
+  font-weight: 600;
+}
+
+.txt-green {
+  color: var(--sig-green);
+}
+
+.txt-yellow {
+  color: var(--sig-yellow);
+}
+
+.txt-red {
+  color: var(--sig-red);
+}
+
+.keep-left {
+  font-size: 13px;
+}
