@@ -81,7 +81,7 @@ export const adaptivePolicy = (): Controller => {
         }
       }
       lastGreen[best] = t
-      const needed = q[best] / SAT_FLOW + 4
+      const needed = q[best] / 0.45 + 5
       return { arm: best, durationS: Math.min(45, Math.max(15, Math.round(needed / 5) * 5)) }
     },
   }
