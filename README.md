@@ -55,18 +55,34 @@ interface DataSource {
   getModeHistory(): Promise<ModeChange[]>
   subscribeDecisions(cb: (d: Decision) => void): () => void
   getMetrics(range: 'clip' | 'session'): Promise<Metrics>
+  getEvidence(): Promise<Evidence | null>  // recorded-run provenance + results (static source only)
 }
 ```
+
+`VITE_DATA_SOURCE` picks the source: `static` (default), `mock` or `api`.
+
+- **static**: replays the recorded Chennai runs produced by the Python bridge (`bridge/`, see
+  [bridge/README.md](bridge/README.md)) from `public/data/*.json`. The Control switch selects the
+  PPO or round-robin timeline; device status is a placeholder. The dashboard shows
+  "Observed on Chennai footage" and "Simulation (SUMO)" separately, and a
+  "Provisional — old-reward model" badge appears while `run_info.json` says `provisional: true`.
+- **mock**: the deterministic simulator below (sample numbers).
+- **api**: the Pi gateway (not built yet).
+
+A `Decision` is a green segment: `arms: Arm[]` can hold two arms (the EW-through phase greens West
+and East together), and `yellowS` / `allRedS` give its clearance.
 
 ```
 src/data/
   types.ts              Mode, Arm, Signal, Decision, DeviceStatus, Metrics, DataSource
   index.ts              picks the source from VITE_DATA_SOURCE, owns the shared clock
-  signals.ts            signal rules: green → 3 s yellow → 2 s all-red, one green at a time
+  signals.ts            signal rules: green → 3 s yellow → 2 s all-red; one or more arms green
   clock.ts              shared 10-minute clip clock
-  hooks.ts              React hooks (useMode, useStatus, useDecision, useMetrics, useClock)
+  hooks.ts              React hooks (useMode, useStatus, useDecision, useMetrics, useEvidence, useClock)
+  static/
+    StaticDataSource.ts the default source: recorded runs in public/data/
   mock/
-    MockDataSource.ts   the default source
+    MockDataSource.ts   simulated sample data (VITE_DATA_SOURCE=mock)
     ppo_timeline.json   ~10-min PPO decision timeline (generated)
     sim.ts              deterministic queue simulator behind all mock numbers
   api/
