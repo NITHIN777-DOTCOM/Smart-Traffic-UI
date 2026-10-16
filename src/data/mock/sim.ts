@@ -91,7 +91,12 @@ export const adaptivePolicy = (): Controller => {
 
 export const replay = (timeline: Decision[]): Controller => {
   let i = 0
-  return { next: () => timeline[Math.min(i++, timeline.length - 1)] }
+  return {
+    next: () => {
+      const d = timeline[Math.min(i++, timeline.length - 1)]
+      return { arm: d.arms[0], durationS: d.durationS }
+    },
+  }
 }
 
 export interface SimResult {
@@ -136,7 +141,7 @@ export function simulate(
     const vehicles = perArm((a) => queue[a] + Math.floor(rand() * 4))
     res.decisions.push({
       t,
-      arm,
+      arms: [arm],
       signal: 'green',
       durationS,
       queue: { ...queue },

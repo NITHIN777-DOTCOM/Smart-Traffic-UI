@@ -1,0 +1,25 @@
+{
+ "generatedAt": "2026-10-16T18:13:32+05:30",
+ "modelFile": "ppo_normal_mlp_best.pth",
+ "modelPath": "C:\\Users\\Juju\\Desktop\\Smart-Traffic-PPO\\smart_traffic_ppo\\models\\ppo_normal_mlp_best.pth",
+ "modelSha256": "c9dbdb0c65e6e1f854abb7cc66c09f5f8499f6194c60a8efb1ce6cbbc0d77276",
+ "rewardLabel": "OLD",
+ "provisional": true,
+ "provisionalLabel": "Provisional — old-reward model",
+ "ppoCommit": "6071e3dd558ce3e771a5f7950b2f8cb35cac7fb7",
+ "calibration": "uncalibrated",
+ "signalTimingLabel": "Assumed signal timing (no signal visible in footage)",
+ "decisionIntervalS": 30.0,
+ "runs": {
+  "ppo": "ppo_20261016_173809",
+  "roundRobin": "round_robin_20261016_173813"
+ },
+ "processedS": {
+  "ppo": 600.0,
+  "roundRobin": 600.0
+ },
+ "governor": "enabled",
+ "legalMask": "enabled",
+ "untrainedInputs": "neutralize",
+ "deviceStatus": "placeholder (no device connected)"
+}

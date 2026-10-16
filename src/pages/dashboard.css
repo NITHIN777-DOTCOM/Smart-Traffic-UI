@@ -154,3 +154,50 @@
   align-items: center;
   gap: 8px;
 }
+
+/* ---------- Recorded-run (static) dashboard ---------- */
+
+.model-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  font-size: 15px;
+}
+
+.evidence-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--divider);
+}
+
+.section-head h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 12px 0 0;
+}
+
+.section-head p {
+  margin: 0;
+  max-width: 900px;
+}
+
+.decisions td.cell-wrap {
+  font-size: 13px;
+  max-width: 320px;
+}
+
+.decisions .note {
+  margin: 0;
+  font-size: 13px;
+}

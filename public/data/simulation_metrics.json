@@ -1,0 +1,44 @@
+{
+ "label": "Simulation (SUMO)",
+ "note": "Numbers copied from the PPO repo's research results; SUMO was not re-run by the bridge. Real SUMO, rush_hour demand, eval seeds 40000-40009, 1000 steps per episode. Queue and wait are the benchmark's normalised values (lower is better); throughput is vehicles discharged per episode (higher is better).",
+ "ppoRepoCommit": "6071e3dd558ce3e771a5f7950b2f8cb35cac7fb7",
+ "rows": [
+  {
+   "controller": "PPO MLP @3000, aligned reward",
+   "queue": 0.9073,
+   "wait": 0.779,
+   "throughput": 538.0,
+   "emergencyWait": 0.8369,
+   "reward": "ALIGNED (research/reward_aligned.yaml = configs/reward.yaml)",
+   "checkpoint": "research campaign, 3 training seeds (101/202/303) x 3000 episodes; checkpoints kept outside the repo",
+   "n": 30,
+   "source": "smart_traffic_ppo/research/results/aligned.md"
+  },
+  {
+   "controller": "PPO MLP @3000, old reward",
+   "queue": 0.9633,
+   "wait": 0.8698,
+   "throughput": 422.7,
+   "emergencyWait": 0.7831,
+   "reward": "OLD (pre-alignment reward, configs/ab/reward_pre_alignment.yaml)",
+   "checkpoint": "research campaign, seeds 101/202/303 x 3000 episodes (research/results/mlp_vs_lstm_3000.md); not the replay's ppo_normal_mlp_best.pth",
+   "n": 30,
+   "source": "smart_traffic_ppo/research/results/aligned.md"
+  },
+  {
+   "controller": "Fixed time (round robin)",
+   "queue": 1.2306,
+   "wait": 0.8011,
+   "throughput": 314.4,
+   "emergencyWait": 0.8272,
+   "reward": "n/a (classical controller)",
+   "checkpoint": "n/a",
+   "n": 10,
+   "source": "smart_traffic_ppo/research/results/baselines.md"
+  }
+ ],
+ "sources": [
+  "smart_traffic_ppo/research/results/aligned.md",
+  "smart_traffic_ppo/research/results/baselines.md"
+ ]
+}

@@ -16,31 +16,33 @@ export type Phase = 'green' | 'yellow' | 'all_red'
 export interface JunctionState {
   phase: Phase
   arms: Record<Arm, ArmSignal>
-  /** Seconds until the controller makes its next decision. */
+  /** Seconds until the signals next change (the end of this segment's clearance). */
   nextDecisionS: number
 }
 
 /**
- * Signal rules: only the decided arm is ever green; every change runs
- * green → 3 s yellow → 2 s all-red before the next decision.
+ * Signal rules: only the decision's arms are ever green (one or several together);
+ * every change runs green → yellow (3 s) → all-red (2 s) before the next green.
+ * A segment with no clearance (yellowS = allRedS = 0) stays green to its end.
  */
 export function junctionStateAt(d: Decision, t: number): JunctionState {
   const elapsed = Math.max(0, t - d.t)
   const greenEnd = d.durationS
-  const yellowEnd = greenEnd + YELLOW_S
-  const cycleEnd = yellowEnd + ALL_RED_S
+  const yellowEnd = greenEnd + (d.yellowS ?? YELLOW_S)
+  const cycleEnd = yellowEnd + (d.allRedS ?? ALL_RED_S)
   const nextDecisionS = Math.max(0, cycleEnd - elapsed)
 
-  const phase: Phase = elapsed < greenEnd ? 'green' : elapsed < yellowEnd ? 'yellow' : 'all_red'
+  const phase: Phase =
+    elapsed < greenEnd || cycleEnd === greenEnd ? 'green' : elapsed < yellowEnd ? 'yellow' : 'all_red'
   const active: ArmSignal =
     phase === 'green'
-      ? { signal: 'green', leftS: greenEnd - elapsed }
+      ? { signal: 'green', leftS: Math.max(0, greenEnd - elapsed) }
       : phase === 'yellow'
         ? { signal: 'yellow', leftS: yellowEnd - elapsed }
         : { signal: 'red', leftS: nextDecisionS }
 
   const arms = {} as Record<Arm, ArmSignal>
-  for (const arm of ARMS) arms[arm] = arm === d.arm ? active : { signal: 'red', leftS: nextDecisionS }
+  for (const arm of ARMS) arms[arm] = d.arms.includes(arm) ? active : { signal: 'red', leftS: nextDecisionS }
   return { phase, arms, nextDecisionS }
 }
 

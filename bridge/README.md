@@ -71,9 +71,11 @@ cd bridge
 This copies the file into `bridge/models/` (git-ignored), prints its reward label (a loud
 warning if it is not ALIGNED), re-runs the PPO replay on the full clip (about 30–40 min on
 this laptop's CPU, see PROGRESS.md for measured times), re-runs `convert.py` and prints a summary.
-Add `--max-seconds 60` for a quick check (convert then accepts the partial run), or `--no-run`
-to only copy and label. The round-robin run does not depend on the model and is reused.
-Commit the regenerated `public/data/*.json` afterwards.
+Add `--max-seconds 60` for a quick check (convert then accepts the partial run, so
+`public/data/` briefly holds only 60 s of PPO decisions: run again without it before committing),
+or `--no-run` to only copy and label. The round-robin run does not depend on the model and is
+reused. Then check the UI (`npm run build`, the "Provisional" badge disappears for an ALIGNED
+checkpoint) and commit the regenerated `public/data/*.json`.
 
 ## Commands
 
@@ -81,13 +83,14 @@ Commit the regenerated `public/data/*.json` afterwards.
 cd bridge
 py -3.11 -m venv .venv
 .venv/Scripts/python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
-.venv/Scripts/python -m pip install "gymnasium>=0.29,<1.0" "numpy>=1.26,<3.0" "pandas>=2.0" "matplotlib>=3.7" "scikit-learn>=1.3" "scipy>=1.11" "pyyaml>=6.0" "ultralytics>=8.1" "opencv-python>=4.8" "imageio-ffmpeg>=0.6" "psutil>=5.9" "pytest>=7.4" "traci==1.18.0" "sumolib==1.18.0" "tensorboard>=2.15"
+.venv/Scripts/python -m pip install "gymnasium>=0.29,<1.0" "numpy>=1.26,<3.0" "pandas>=2.0" "matplotlib>=3.7" "scikit-learn>=1.3" "scipy>=1.11" "pyyaml>=6.0" "ultralytics>=8.1" "opencv-python>=4.8" "imageio-ffmpeg>=0.6" "psutil>=5.9" "pytest>=7.4" "traci==1.18.0" "sumolib==1.18.0" "tensorboard>=2.15" "lap>=0.5.12"
 .venv/Scripts/python scripts/check_imports.py           # imports + phase topology
 .venv/Scripts/python scripts/prepare_media.py           # CSV, normalised clips, blank North (needs ffmpeg)
 .venv/Scripts/python runner/run_replay.py --mode ppo --max-seconds 60          # smoke test
 .venv/Scripts/python runner/run_replay.py --mode ppo                           # full clip
 .venv/Scripts/python runner/run_replay.py --mode round_robin                   # full clip
 .venv/Scripts/python convert.py                         # -> ../public/data/*.json
+.venv/Scripts/python scripts/check_alignment.py         # originals vs normalised clips at 0/300/590 s
 .venv/Scripts/python -B -m pytest -q -p no:cacheprovider tests
 ```
 

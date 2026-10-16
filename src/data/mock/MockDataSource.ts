@@ -4,6 +4,7 @@ import type {
   DataSource,
   Decision,
   DeviceStatus,
+  Evidence,
   Metrics,
   MetricsRange,
   Mode,
@@ -123,6 +124,11 @@ export class MockDataSource implements DataSource {
       this.metricsCache.set(range, m)
     }
     return delay(m, 250)
+  }
+
+  /** The mock has no recorded runs behind it. */
+  getEvidence(): Promise<Evidence | null> {
+    return delay(null)
   }
 }
 

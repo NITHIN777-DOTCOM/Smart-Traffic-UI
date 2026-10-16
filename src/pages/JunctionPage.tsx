@@ -4,7 +4,7 @@ import { FeedCard } from '../components/junction/FeedCard'
 import { RoadArm } from '../components/junction/RoadArm'
 import { TrafficEngine, type TrafficInputs } from '../components/junction/traffic'
 import { clock } from '../data'
-import { useClock, useDecision, useMode } from '../data/hooks'
+import { useClock, useDecision, useEvidence, useMode } from '../data/hooks'
 import { ARM_LABEL, MODE_LABEL } from '../data/labels'
 import { ARMS, formatClock, junctionStateAt } from '../data/signals'
 import type { Arm, Decision, Signal } from '../data/types'
@@ -37,6 +37,8 @@ export function JunctionPage() {
   const snap = useClock()
   const decision = useDecision()
   const { mode } = useMode()
+  const { data: evidence } = useEvidence()
+  const assumedNote = mode === 'round_robin' && evidence ? evidence.runInfo.signalTimingLabel : undefined
 
   const decisionRef = useRef(decision)
   useEffect(() => {
@@ -81,6 +83,7 @@ export function JunctionPage() {
           <span className={`pill ${mode === 'ppo' ? 'pill-accent' : ''} mode-pill`}>
             {mode ? `${MODE_LABEL[mode]} mode` : 'Loading…'}
           </span>
+          {evidence && <span className="pill">Recorded run · open loop</span>}
           <button
             type="button"
             className="btn-icon"
@@ -146,7 +149,7 @@ export function JunctionPage() {
           </div>
           {road('east')}
 
-          <div className="cell">{decision && state && <DecisionCard decision={decision} state={state} mode={mode} />}</div>
+          <div className="cell">{decision && state && <DecisionCard decision={decision} state={state} mode={mode} note={assumedNote} />}</div>
           {road('south')}
           <div className="cell">{feed('south')}</div>
         </div>

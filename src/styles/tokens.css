@@ -23,6 +23,11 @@
   --lane-mark: #8a8a8a;
   --stop-line: #e6e6e6;
 
+  /* Per-arm series in the recorded-run charts */
+  --arm-west: #5f9ea0;
+  --arm-east: #c48bd6;
+  --arm-south: #e0a458;
+
   /* Round-robin series in charts */
   --rr-line: #8a8a8a;
   --rr-bar: #5a5a5a;

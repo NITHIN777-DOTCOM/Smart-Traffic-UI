@@ -192,3 +192,12 @@
     gap: 4px;
   }
 }
+
+.placeholder-note {
+  margin: 0;
+  font-size: 14px;
+}
+
+.status-grid.placeholder .tile {
+  border-style: dashed;
+}

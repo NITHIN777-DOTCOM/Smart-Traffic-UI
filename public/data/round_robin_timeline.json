@@ -1,0 +1,2614 @@
+{
+ "generatedAt": "2026-10-16T18:13:32+05:30",
+ "clipS": 600.0,
+ "calibration": "uncalibrated",
+ "openLoop": true,
+ "mode": "round_robin",
+ "run": "round_robin_20261016_173813",
+ "signalTiming": "Assumed signal timing (no signal visible in footage)",
+ "processedS": 600.0,
+ "timeline": [
+  {
+   "t": 0.0,
+   "arms": [
+    "west"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 0.0,
+    "east": 7.0,
+    "south": 1.0
+   },
+   "vehicles": {
+    "west": 0,
+    "east": 20,
+    "south": 1
+   },
+   "decisionT": 0.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 30.0,
+   "arms": [
+    "east"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 1.0,
+    "east": 4.0,
+    "south": 2.0
+   },
+   "vehicles": {
+    "west": 2,
+    "east": 20,
+    "south": 5
+   },
+   "decisionT": 30.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 60.0,
+   "arms": [
+    "south"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 0.0,
+    "east": 1.0,
+    "south": 3.0
+   },
+   "vehicles": {
+    "west": 6,
+    "east": 16,
+    "south": 14
+   },
+   "decisionT": 60.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 90.0,
+   "arms": [
+    "west"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 0.0,
+    "east": 0.0,
+    "south": 1.0
+   },
+   "vehicles": {
+    "west": 2,
+    "east": 12,
+    "south": 9
+   },
+   "decisionT": 90.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 120.0,
+   "arms": [
+    "east"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 3.0,
+    "east": 1.0,
+    "south": 1.0
+   },
+   "vehicles": {
+    "west": 9,
+    "east": 10,
+    "south": 11
+   },
+   "decisionT": 120.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 150.0,
+   "arms": [
+    "south"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 4.0,
+    "east": 1.0,
+    "south": 0.0
+   },
+   "vehicles": {
+    "west": 9,
+    "east": 8,
+    "south": 8
+   },
+   "decisionT": 150.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 180.0,
+   "arms": [
+    "west"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 0.0,
+    "east": 3.0,
+    "south": 2.0
+   },
+   "vehicles": {
+    "west": 6,
+    "east": 20,
+    "south": 11
+   },
+   "decisionT": 180.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 210.0,
+   "arms": [
+    "east"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 0.0,
+    "east": 1.0,
+    "south": 3.0
+   },
+   "vehicles": {
+    "west": 4,
+    "east": 21,
+    "south": 16
+   },
+   "decisionT": 210.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 240.0,
+   "arms": [
+    "south"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 0.0,
+    "east": 0.0,
+    "south": 2.0
+   },
+   "vehicles": {
+    "west": 2,
+    "east": 18,
+    "south": 11
+   },
+   "decisionT": 240.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 270.0,
+   "arms": [
+    "west"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 1.0,
+    "east": 2.0,
+    "south": 1.0
+   },
+   "vehicles": {
+    "west": 5,
+    "east": 14,
+    "south": 6
+   },
+   "decisionT": 270.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 300.0,
+   "arms": [
+    "east"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 3.0,
+    "east": 0.0,
+    "south": 1.0
+   },
+   "vehicles": {
+    "west": 12,
+    "east": 12,
+    "south": 9
+   },
+   "decisionT": 300.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 330.0,
+   "arms": [
+    "south"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 0.0,
+    "east": 1.0,
+    "south": 2.0
+   },
+   "vehicles": {
+    "west": 10,
+    "east": 11,
+    "south": 12
+   },
+   "decisionT": 330.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 360.0,
+   "arms": [
+    "west"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 0.0,
+    "east": 1.0,
+    "south": 1.0
+   },
+   "vehicles": {
+    "west": 4,
+    "east": 10,
+    "south": 10
+   },
+   "decisionT": 360.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 390.0,
+   "arms": [
+    "east"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 0.0,
+    "east": 3.0,
+    "south": 2.0
+   },
+   "vehicles": {
+    "west": 6,
+    "east": 19,
+    "south": 14
+   },
+   "decisionT": 390.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 420.0,
+   "arms": [
+    "south"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 0.0,
+    "east": 2.0,
+    "south": 1.0
+   },
+   "vehicles": {
+    "west": 5,
+    "east": 20,
+    "south": 6
+   },
+   "decisionT": 420.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 450.0,
+   "arms": [
+    "west"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 1.0,
+    "east": 1.0,
+    "south": 3.0
+   },
+   "vehicles": {
+    "west": 8,
+    "east": 10,
+    "south": 7
+   },
+   "decisionT": 450.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 480.0,
+   "arms": [
+    "east"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 6.0,
+    "east": 0.0,
+    "south": 0.0
+   },
+   "vehicles": {
+    "west": 15,
+    "east": 12,
+    "south": 6
+   },
+   "decisionT": 480.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 510.0,
+   "arms": [
+    "south"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 1.0,
+    "east": 0.0,
+    "south": 1.0
+   },
+   "vehicles": {
+    "west": 14,
+    "east": 11,
+    "south": 11
+   },
+   "decisionT": 510.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 540.0,
+   "arms": [
+    "west"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 1.0,
+    "east": 2.0,
+    "south": 5.0
+   },
+   "vehicles": {
+    "west": 4,
+    "east": 19,
+    "south": 13
+   },
+   "decisionT": 540.0,
+   "source": "assumed_signals.csv"
+  },
+  {
+   "t": 570.0,
+   "arms": [
+    "east"
+   ],
+   "signal": "green",
+   "durationS": 25.0,
+   "yellowS": 3.0,
+   "allRedS": 2.0,
+   "queue": {
+    "west": 0.0,
+    "east": 6.0,
+    "south": 0.0
+   },
+   "vehicles": {
+    "west": 8,
+    "east": 15,
+    "south": 10
+   },
+   "decisionT": 570.0,
+   "source": "assumed_signals.csv"
+  }
+ ],
+ "series": [
+  {
+   "t": 0.0,
+   "queue": {
+    "west": 0.03,
+    "east": 1.23,
+    "south": 0.5
+   },
+   "queueNormalised": {
+    "west": 0.0017,
+    "east": 0.0617,
+    "south": 0.025
+   },
+   "vehicles": {
+    "west": 3.67,
+    "east": 17.63,
+    "south": 3.9
+   }
+  },
+  {
+   "t": 5.0,
+   "queue": {
+    "west": 0.2,
+    "east": 1.73,
+    "south": 0.23
+   },
+   "queueNormalised": {
+    "west": 0.01,
+    "east": 0.0867,
+    "south": 0.0117
+   },
+   "vehicles": {
+    "west": 5.07,
+    "east": 19.47,
+    "south": 3.9
+   }
+  },
+  {
+   "t": 10.0,
+   "queue": {
+    "west": 0.2,
+    "east": 0.43,
+    "south": 0.3
+   },
+   "queueNormalised": {
+    "west": 0.01,
+    "east": 0.0217,
+    "south": 0.015
+   },
+   "vehicles": {
+    "west": 1.53,
+    "east": 20.43,
+    "south": 6.87
+   }
+  },
+  {
+   "t": 15.0,
+   "queue": {
+    "west": 0.17,
+    "east": 1.0,
+    "south": 0.7
+   },
+   "queueNormalised": {
+    "west": 0.0083,
+    "east": 0.05,
+    "south": 0.035
+   },
+   "vehicles": {
+    "west": 2.7,
+    "east": 21.43,
+    "south": 9.1
+   }
+  },
+  {
+   "t": 20.0,
+   "queue": {
+    "west": 0.13,
+    "east": 1.3,
+    "south": 0.77
+   },
+   "queueNormalised": {
+    "west": 0.0067,
+    "east": 0.065,
+    "south": 0.0383
+   },
+   "vehicles": {
+    "west": 2.83,
+    "east": 24.4,
+    "south": 9.27
+   }
+  },
+  {
+   "t": 25.0,
+   "queue": {
+    "west": 0.07,
+    "east": 1.3,
+    "south": 2.2
+   },
+   "queueNormalised": {
+    "west": 0.0033,
+    "east": 0.065,
+    "south": 0.11
+   },
+   "vehicles": {
+    "west": 3.23,
+    "east": 21.37,
+    "south": 7.7
+   }
+  },
+  {
+   "t": 30.0,
+   "queue": {
+    "west": 0.23,
+    "east": 2.0,
+    "south": 3.23
+   },
+   "queueNormalised": {
+    "west": 0.0117,
+    "east": 0.1,
+    "south": 0.1617
+   },
+   "vehicles": {
+    "west": 2.7,
+    "east": 21.27,
+    "south": 8.87
+   }
+  },
+  {
+   "t": 35.0,
+   "queue": {
+    "west": 0.53,
+    "east": 3.0,
+    "south": 2.57
+   },
+   "queueNormalised": {
+    "west": 0.0267,
+    "east": 0.15,
+    "south": 0.1283
+   },
+   "vehicles": {
+    "west": 5.13,
+    "east": 20.4,
+    "south": 10.33
+   }
+  },
+  {
+   "t": 40.0,
+   "queue": {
+    "west": 0.6,
+    "east": 2.7,
+    "south": 2.83
+   },
+   "queueNormalised": {
+    "west": 0.03,
+    "east": 0.135,
+    "south": 0.1417
+   },
+   "vehicles": {
+    "west": 3.4,
+    "east": 16.9,
+    "south": 9.7
+   }
+  },
+  {
+   "t": 45.0,
+   "queue": {
+    "west": 0.37,
+    "east": 1.17,
+    "south": 3.73
+   },
+   "queueNormalised": {
+    "west": 0.0183,
+    "east": 0.0583,
+    "south": 0.1867
+   },
+   "vehicles": {
+    "west": 2.63,
+    "east": 13.97,
+    "south": 11.87
+   }
+  },
+  {
+   "t": 50.0,
+   "queue": {
+    "west": 0.17,
+    "east": 0.83,
+    "south": 2.5
+   },
+   "queueNormalised": {
+    "west": 0.0083,
+    "east": 0.0417,
+    "south": 0.125
+   },
+   "vehicles": {
+    "west": 3.87,
+    "east": 15.37,
+    "south": 11.43
+   }
+  },
+  {
+   "t": 55.0,
+   "queue": {
+    "west": 0.33,
+    "east": 0.87,
+    "south": 2.67
+   },
+   "queueNormalised": {
+    "west": 0.0167,
+    "east": 0.0433,
+    "south": 0.1333
+   },
+   "vehicles": {
+    "west": 5.33,
+    "east": 19.6,
+    "south": 12.7
+   }
+  },
+  {
+   "t": 60.0,
+   "queue": {
+    "west": 0.07,
+    "east": 1.37,
+    "south": 2.27
+   },
+   "queueNormalised": {
+    "west": 0.0033,
+    "east": 0.0683,
+    "south": 0.1133
+   },
+   "vehicles": {
+    "west": 4.47,
+    "east": 18.37,
+    "south": 13.1
+   }
+  },
+  {
+   "t": 65.0,
+   "queue": {
+    "west": 0.23,
+    "east": 1.7,
+    "south": 0.93
+   },
+   "queueNormalised": {
+    "west": 0.0117,
+    "east": 0.085,
+    "south": 0.0467
+   },
+   "vehicles": {
+    "west": 4.9,
+    "east": 19.07,
+    "south": 10.73
+   }
+  },
+  {
+   "t": 70.0,
+   "queue": {
+    "west": 0.1,
+    "east": 1.17,
+    "south": 0.8
+   },
+   "queueNormalised": {
+    "west": 0.005,
+    "east": 0.0583,
+    "south": 0.04
+   },
+   "vehicles": {
+    "west": 3.2,
+    "east": 19.0,
+    "south": 10.73
+   }
+  },
+  {
+   "t": 75.0,
+   "queue": {
+    "west": 0.07,
+    "east": 0.63,
+    "south": 1.03
+   },
+   "queueNormalised": {
+    "west": 0.0033,
+    "east": 0.0317,
+    "south": 0.0517
+   },
+   "vehicles": {
+    "west": 3.47,
+    "east": 21.73,
+    "south": 9.73
+   }
+  },
+  {
+   "t": 80.0,
+   "queue": {
+    "west": 0.0,
+    "east": 1.3,
+    "south": 0.6
+   },
+   "queueNormalised": {
+    "west": 0.0,
+    "east": 0.065,
+    "south": 0.03
+   },
+   "vehicles": {
+    "west": 2.83,
+    "east": 18.73,
+    "south": 9.47
+   }
+  },
+  {
+   "t": 85.0,
+   "queue": {
+    "west": 0.07,
+    "east": 1.07,
+    "south": 1.37
+   },
+   "queueNormalised": {
+    "west": 0.0033,
+    "east": 0.0533,
+    "south": 0.0683
+   },
+   "vehicles": {
+    "west": 1.57,
+    "east": 14.4,
+    "south": 8.63
+   }
+  },
+  {
+   "t": 90.0,
+   "queue": {
+    "west": 0.1,
+    "east": 1.3,
+    "south": 1.87
+   },
+   "queueNormalised": {
+    "west": 0.005,
+    "east": 0.065,
+    "south": 0.0933
+   },
+   "vehicles": {
+    "west": 4.57,
+    "east": 12.67,
+    "south": 9.1
+   }
+  },
+  {
+   "t": 95.0,
+   "queue": {
+    "west": 0.0,
+    "east": 0.67,
+    "south": 1.1
+   },
+   "queueNormalised": {
+    "west": 0.0,
+    "east": 0.0333,
+    "south": 0.055
+   },
+   "vehicles": {
+    "west": 5.47,
+    "east": 11.17,
+    "south": 8.57
+   }
+  },
+  {
+   "t": 100.0,
+   "queue": {
+    "west": 0.53,
+    "east": 0.37,
+    "south": 1.93
+   },
+   "queueNormalised": {
+    "west": 0.0267,
+    "east": 0.0183,
+    "south": 0.0967
+   },
+   "vehicles": {
+    "west": 5.57,
+    "east": 7.73,
+    "south": 9.8
+   }
+  },
+  {
+   "t": 105.0,
+   "queue": {
+    "west": 1.27,
+    "east": 0.47,
+    "south": 0.77
+   },
+   "queueNormalised": {
+    "west": 0.0633,
+    "east": 0.0233,
+    "south": 0.0383
+   },
+   "vehicles": {
+    "west": 8.43,
+    "east": 8.13,
+    "south": 8.53
+   }
+  },
+  {
+   "t": 110.0,
+   "queue": {
+    "west": 3.4,
+    "east": 0.1,
+    "south": 0.87
+   },
+   "queueNormalised": {
+    "west": 0.17,
+    "east": 0.005,
+    "south": 0.0433
+   },
+   "vehicles": {
+    "west": 9.4,
+    "east": 6.73,
+    "south": 11.07
+   }
+  },
+  {
+   "t": 115.0,
+   "queue": {
+    "west": 3.3,
+    "east": 0.37,
+    "south": 1.7
+   },
+   "queueNormalised": {
+    "west": 0.165,
+    "east": 0.0183,
+    "south": 0.085
+   },
+   "vehicles": {
+    "west": 9.37,
+    "east": 6.73,
+    "south": 11.2
+   }
+  },
+  {
+   "t": 120.0,
+   "queue": {
+    "west": 4.13,
+    "east": 0.23,
+    "south": 1.97
+   },
+   "queueNormalised": {
+    "west": 0.2067,
+    "east": 0.0117,
+    "south": 0.0983
+   },
+   "vehicles": {
+    "west": 9.77,
+    "east": 7.4,
+    "south": 10.57
+   }
+  },
+  {
+   "t": 125.0,
+   "queue": {
+    "west": 1.7,
+    "east": 0.4,
+    "south": 2.47
+   },
+   "queueNormalised": {
+    "west": 0.085,
+    "east": 0.02,
+    "south": 0.1233
+   },
+   "vehicles": {
+    "west": 8.17,
+    "east": 9.27,
+    "south": 7.73
+   }
+  },
+  {
+   "t": 130.0,
+   "queue": {
+    "west": 3.53,
+    "east": 0.23,
+    "south": 1.67
+   },
+   "queueNormalised": {
+    "west": 0.1767,
+    "east": 0.0117,
+    "south": 0.0833
+   },
+   "vehicles": {
+    "west": 9.9,
+    "east": 8.53,
+    "south": 6.77
+   }
+  },
+  {
+   "t": 135.0,
+   "queue": {
+    "west": 5.1,
+    "east": 0.3,
+    "south": 1.1
+   },
+   "queueNormalised": {
+    "west": 0.255,
+    "east": 0.015,
+    "south": 0.055
+   },
+   "vehicles": {
+    "west": 10.4,
+    "east": 6.87,
+    "south": 6.0
+   }
+  },
+  {
+   "t": 140.0,
+   "queue": {
+    "west": 5.03,
+    "east": 0.33,
+    "south": 2.4
+   },
+   "queueNormalised": {
+    "west": 0.2517,
+    "east": 0.0167,
+    "south": 0.12
+   },
+   "vehicles": {
+    "west": 9.23,
+    "east": 8.07,
+    "south": 7.63
+   }
+  },
+  {
+   "t": 145.0,
+   "queue": {
+    "west": 3.57,
+    "east": 0.1,
+    "south": 1.37
+   },
+   "queueNormalised": {
+    "west": 0.1783,
+    "east": 0.005,
+    "south": 0.0683
+   },
+   "vehicles": {
+    "west": 8.13,
+    "east": 8.3,
+    "south": 7.93
+   }
+  },
+  {
+   "t": 150.0,
+   "queue": {
+    "west": 3.57,
+    "east": 0.33,
+    "south": 1.33
+   },
+   "queueNormalised": {
+    "west": 0.1783,
+    "east": 0.0167,
+    "south": 0.0667
+   },
+   "vehicles": {
+    "west": 9.73,
+    "east": 8.8,
+    "south": 9.63
+   }
+  },
+  {
+   "t": 155.0,
+   "queue": {
+    "west": 1.5,
+    "east": 0.23,
+    "south": 0.87
+   },
+   "queueNormalised": {
+    "west": 0.075,
+    "east": 0.0117,
+    "south": 0.0433
+   },
+   "vehicles": {
+    "west": 8.77,
+    "east": 7.53,
+    "south": 9.27
+   }
+  },
+  {
+   "t": 160.0,
+   "queue": {
+    "west": 0.23,
+    "east": 0.5,
+    "south": 0.6
+   },
+   "queueNormalised": {
+    "west": 0.0117,
+    "east": 0.025,
+    "south": 0.03
+   },
+   "vehicles": {
+    "west": 8.47,
+    "east": 10.43,
+    "south": 8.57
+   }
+  },
+  {
+   "t": 165.0,
+   "queue": {
+    "west": 0.37,
+    "east": 0.47,
+    "south": 1.0
+   },
+   "queueNormalised": {
+    "west": 0.0183,
+    "east": 0.0233,
+    "south": 0.05
+   },
+   "vehicles": {
+    "west": 7.63,
+    "east": 13.2,
+    "south": 9.73
+   }
+  },
+  {
+   "t": 170.0,
+   "queue": {
+    "west": 0.17,
+    "east": 0.63,
+    "south": 0.87
+   },
+   "queueNormalised": {
+    "west": 0.0083,
+    "east": 0.0317,
+    "south": 0.0433
+   },
+   "vehicles": {
+    "west": 7.57,
+    "east": 15.8,
+    "south": 8.47
+   }
+  },
+  {
+   "t": 175.0,
+   "queue": {
+    "west": 0.33,
+    "east": 2.07,
+    "south": 2.63
+   },
+   "queueNormalised": {
+    "west": 0.0167,
+    "east": 0.1033,
+    "south": 0.1317
+   },
+   "vehicles": {
+    "west": 7.23,
+    "east": 16.87,
+    "south": 10.2
+   }
+  },
+  {
+   "t": 180.0,
+   "queue": {
+    "west": 0.2,
+    "east": 2.6,
+    "south": 1.2
+   },
+   "queueNormalised": {
+    "west": 0.01,
+    "east": 0.13,
+    "south": 0.06
+   },
+   "vehicles": {
+    "west": 6.4,
+    "east": 18.43,
+    "south": 11.47
+   }
+  },
+  {
+   "t": 185.0,
+   "queue": {
+    "west": 0.1,
+    "east": 2.0,
+    "south": 2.63
+   },
+   "queueNormalised": {
+    "west": 0.005,
+    "east": 0.1,
+    "south": 0.1317
+   },
+   "vehicles": {
+    "west": 6.47,
+    "east": 15.8,
+    "south": 11.0
+   }
+  },
+  {
+   "t": 190.0,
+   "queue": {
+    "west": 0.2,
+    "east": 4.97,
+    "south": 3.5
+   },
+   "queueNormalised": {
+    "west": 0.01,
+    "east": 0.2483,
+    "south": 0.175
+   },
+   "vehicles": {
+    "west": 5.0,
+    "east": 17.17,
+    "south": 15.43
+   }
+  },
+  {
+   "t": 195.0,
+   "queue": {
+    "west": 0.13,
+    "east": 1.27,
+    "south": 3.23
+   },
+   "queueNormalised": {
+    "west": 0.0067,
+    "east": 0.0633,
+    "south": 0.1617
+   },
+   "vehicles": {
+    "west": 4.47,
+    "east": 18.5,
+    "south": 16.37
+   }
+  },
+  {
+   "t": 200.0,
+   "queue": {
+    "west": 0.27,
+    "east": 2.37,
+    "south": 3.1
+   },
+   "queueNormalised": {
+    "west": 0.0133,
+    "east": 0.1183,
+    "south": 0.155
+   },
+   "vehicles": {
+    "west": 5.6,
+    "east": 17.3,
+    "south": 16.3
+   }
+  },
+  {
+   "t": 205.0,
+   "queue": {
+    "west": 0.3,
+    "east": 1.53,
+    "south": 3.03
+   },
+   "queueNormalised": {
+    "west": 0.015,
+    "east": 0.0767,
+    "south": 0.1517
+   },
+   "vehicles": {
+    "west": 4.43,
+    "east": 16.5,
+    "south": 15.07
+   }
+  },
+  {
+   "t": 210.0,
+   "queue": {
+    "west": 0.2,
+    "east": 1.33,
+    "south": 3.7
+   },
+   "queueNormalised": {
+    "west": 0.01,
+    "east": 0.0667,
+    "south": 0.185
+   },
+   "vehicles": {
+    "west": 3.73,
+    "east": 17.87,
+    "south": 18.0
+   }
+  },
+  {
+   "t": 215.0,
+   "queue": {
+    "west": 0.13,
+    "east": 1.53,
+    "south": 1.1
+   },
+   "queueNormalised": {
+    "west": 0.0067,
+    "east": 0.0767,
+    "south": 0.055
+   },
+   "vehicles": {
+    "west": 3.57,
+    "east": 16.1,
+    "south": 16.4
+   }
+  },
+  {
+   "t": 220.0,
+   "queue": {
+    "west": 0.07,
+    "east": 1.77,
+    "south": 0.87
+   },
+   "queueNormalised": {
+    "west": 0.0033,
+    "east": 0.0883,
+    "south": 0.0433
+   },
+   "vehicles": {
+    "west": 3.3,
+    "east": 14.67,
+    "south": 14.77
+   }
+  },
+  {
+   "t": 225.0,
+   "queue": {
+    "west": 0.13,
+    "east": 0.43,
+    "south": 0.73
+   },
+   "queueNormalised": {
+    "west": 0.0067,
+    "east": 0.0217,
+    "south": 0.0367
+   },
+   "vehicles": {
+    "west": 2.57,
+    "east": 16.9,
+    "south": 12.47
+   }
+  },
+  {
+   "t": 230.0,
+   "queue": {
+    "west": 0.27,
+    "east": 0.7,
+    "south": 1.13
+   },
+   "queueNormalised": {
+    "west": 0.0133,
+    "east": 0.035,
+    "south": 0.0567
+   },
+   "vehicles": {
+    "west": 3.87,
+    "east": 15.73,
+    "south": 13.5
+   }
+  },
+  {
+   "t": 235.0,
+   "queue": {
+    "west": 0.17,
+    "east": 1.1,
+    "south": 2.27
+   },
+   "queueNormalised": {
+    "west": 0.0083,
+    "east": 0.055,
+    "south": 0.1133
+   },
+   "vehicles": {
+    "west": 3.03,
+    "east": 15.83,
+    "south": 12.5
+   }
+  },
+  {
+   "t": 240.0,
+   "queue": {
+    "west": 0.1,
+    "east": 1.77,
+    "south": 2.8
+   },
+   "queueNormalised": {
+    "west": 0.005,
+    "east": 0.0883,
+    "south": 0.14
+   },
+   "vehicles": {
+    "west": 1.53,
+    "east": 19.6,
+    "south": 11.03
+   }
+  },
+  {
+   "t": 245.0,
+   "queue": {
+    "west": 0.03,
+    "east": 1.83,
+    "south": 3.47
+   },
+   "queueNormalised": {
+    "west": 0.0017,
+    "east": 0.0917,
+    "south": 0.1733
+   },
+   "vehicles": {
+    "west": 1.23,
+    "east": 21.4,
+    "south": 10.07
+   }
+  },
+  {
+   "t": 250.0,
+   "queue": {
+    "west": 0.1,
+    "east": 1.43,
+    "south": 1.6
+   },
+   "queueNormalised": {
+    "west": 0.005,
+    "east": 0.0717,
+    "south": 0.08
+   },
+   "vehicles": {
+    "west": 1.37,
+    "east": 19.37,
+    "south": 11.1
+   }
+  },
+  {
+   "t": 255.0,
+   "queue": {
+    "west": 0.1,
+    "east": 2.37,
+    "south": 1.0
+   },
+   "queueNormalised": {
+    "west": 0.005,
+    "east": 0.1183,
+    "south": 0.05
+   },
+   "vehicles": {
+    "west": 2.87,
+    "east": 14.93,
+    "south": 11.13
+   }
+  },
+  {
+   "t": 260.0,
+   "queue": {
+    "west": 0.1,
+    "east": 1.2,
+    "south": 1.4
+   },
+   "queueNormalised": {
+    "west": 0.005,
+    "east": 0.06,
+    "south": 0.07
+   },
+   "vehicles": {
+    "west": 4.7,
+    "east": 15.5,
+    "south": 8.0
+   }
+  },
+  {
+   "t": 265.0,
+   "queue": {
+    "west": 0.73,
+    "east": 0.57,
+    "south": 0.53
+   },
+   "queueNormalised": {
+    "west": 0.0367,
+    "east": 0.0283,
+    "south": 0.0267
+   },
+   "vehicles": {
+    "west": 5.3,
+    "east": 14.57,
+    "south": 7.2
+   }
+  },
+  {
+   "t": 270.0,
+   "queue": {
+    "west": 0.73,
+    "east": 0.37,
+    "south": 0.73
+   },
+   "queueNormalised": {
+    "west": 0.0367,
+    "east": 0.0183,
+    "south": 0.0367
+   },
+   "vehicles": {
+    "west": 5.37,
+    "east": 13.43,
+    "south": 7.97
+   }
+  },
+  {
+   "t": 275.0,
+   "queue": {
+    "west": 0.83,
+    "east": 0.27,
+    "south": 1.63
+   },
+   "queueNormalised": {
+    "west": 0.0417,
+    "east": 0.0133,
+    "south": 0.0817
+   },
+   "vehicles": {
+    "west": 7.3,
+    "east": 13.1,
+    "south": 9.27
+   }
+  },
+  {
+   "t": 280.0,
+   "queue": {
+    "west": 1.7,
+    "east": 0.2,
+    "south": 0.8
+   },
+   "queueNormalised": {
+    "west": 0.085,
+    "east": 0.01,
+    "south": 0.04
+   },
+   "vehicles": {
+    "west": 9.2,
+    "east": 10.0,
+    "south": 7.93
+   }
+  },
+  {
+   "t": 285.0,
+   "queue": {
+    "west": 2.97,
+    "east": 0.27,
+    "south": 0.27
+   },
+   "queueNormalised": {
+    "west": 0.1483,
+    "east": 0.0133,
+    "south": 0.0133
+   },
+   "vehicles": {
+    "west": 10.23,
+    "east": 11.3,
+    "south": 8.03
+   }
+  },
+  {
+   "t": 290.0,
+   "queue": {
+    "west": 1.9,
+    "east": 0.23,
+    "south": 0.73
+   },
+   "queueNormalised": {
+    "west": 0.095,
+    "east": 0.0117,
+    "south": 0.0367
+   },
+   "vehicles": {
+    "west": 11.6,
+    "east": 8.7,
+    "south": 6.2
+   }
+  },
+  {
+   "t": 295.0,
+   "queue": {
+    "west": 3.33,
+    "east": 0.43,
+    "south": 0.93
+   },
+   "queueNormalised": {
+    "west": 0.1667,
+    "east": 0.0217,
+    "south": 0.0467
+   },
+   "vehicles": {
+    "west": 12.13,
+    "east": 6.83,
+    "south": 7.73
+   }
+  },
+  {
+   "t": 300.0,
+   "queue": {
+    "west": 3.13,
+    "east": 0.57,
+    "south": 0.73
+   },
+   "queueNormalised": {
+    "west": 0.1567,
+    "east": 0.0283,
+    "south": 0.0367
+   },
+   "vehicles": {
+    "west": 12.63,
+    "east": 14.0,
+    "south": 10.1
+   }
+  },
+  {
+   "t": 305.0,
+   "queue": {
+    "west": 3.53,
+    "east": 0.67,
+    "south": 0.13
+   },
+   "queueNormalised": {
+    "west": 0.1767,
+    "east": 0.0333,
+    "south": 0.0067
+   },
+   "vehicles": {
+    "west": 12.4,
+    "east": 12.43,
+    "south": 7.5
+   }
+  },
+  {
+   "t": 310.0,
+   "queue": {
+    "west": 3.9,
+    "east": 1.03,
+    "south": 0.57
+   },
+   "queueNormalised": {
+    "west": 0.195,
+    "east": 0.0517,
+    "south": 0.0283
+   },
+   "vehicles": {
+    "west": 12.9,
+    "east": 12.37,
+    "south": 10.2
+   }
+  },
+  {
+   "t": 315.0,
+   "queue": {
+    "west": 2.3,
+    "east": 0.73,
+    "south": 0.33
+   },
+   "queueNormalised": {
+    "west": 0.115,
+    "east": 0.0367,
+    "south": 0.0167
+   },
+   "vehicles": {
+    "west": 12.1,
+    "east": 11.3,
+    "south": 10.73
+   }
+  },
+  {
+   "t": 320.0,
+   "queue": {
+    "west": 1.2,
+    "east": 0.7,
+    "south": 0.43
+   },
+   "queueNormalised": {
+    "west": 0.06,
+    "east": 0.035,
+    "south": 0.0217
+   },
+   "vehicles": {
+    "west": 9.23,
+    "east": 8.17,
+    "south": 7.5
+   }
+  },
+  {
+   "t": 325.0,
+   "queue": {
+    "west": 0.5,
+    "east": 0.87,
+    "south": 1.2
+   },
+   "queueNormalised": {
+    "west": 0.025,
+    "east": 0.0433,
+    "south": 0.06
+   },
+   "vehicles": {
+    "west": 8.77,
+    "east": 11.3,
+    "south": 9.6
+   }
+  },
+  {
+   "t": 330.0,
+   "queue": {
+    "west": 0.77,
+    "east": 0.73,
+    "south": 2.17
+   },
+   "queueNormalised": {
+    "west": 0.0383,
+    "east": 0.0367,
+    "south": 0.1083
+   },
+   "vehicles": {
+    "west": 8.53,
+    "east": 10.2,
+    "south": 9.0
+   }
+  },
+  {
+   "t": 335.0,
+   "queue": {
+    "west": 0.0,
+    "east": 0.67,
+    "south": 1.03
+   },
+   "queueNormalised": {
+    "west": 0.0,
+    "east": 0.0333,
+    "south": 0.0517
+   },
+   "vehicles": {
+    "west": 4.8,
+    "east": 10.13,
+    "south": 7.47
+   }
+  },
+  {
+   "t": 340.0,
+   "queue": {
+    "west": 0.07,
+    "east": 0.5,
+    "south": 0.47
+   },
+   "queueNormalised": {
+    "west": 0.0033,
+    "east": 0.025,
+    "south": 0.0233
+   },
+   "vehicles": {
+    "west": 5.03,
+    "east": 6.87,
+    "south": 7.33
+   }
+  },
+  {
+   "t": 345.0,
+   "queue": {
+    "west": 0.07,
+    "east": 0.93,
+    "south": 0.33
+   },
+   "queueNormalised": {
+    "west": 0.0033,
+    "east": 0.0467,
+    "south": 0.0167
+   },
+   "vehicles": {
+    "west": 4.73,
+    "east": 7.43,
+    "south": 9.07
+   }
+  },
+  {
+   "t": 350.0,
+   "queue": {
+    "west": 0.0,
+    "east": 0.77,
+    "south": 0.4
+   },
+   "queueNormalised": {
+    "west": 0.0,
+    "east": 0.0383,
+    "south": 0.02
+   },
+   "vehicles": {
+    "west": 4.6,
+    "east": 11.4,
+    "south": 8.33
+   }
+  },
+  {
+   "t": 355.0,
+   "queue": {
+    "west": 0.03,
+    "east": 0.37,
+    "south": 1.7
+   },
+   "queueNormalised": {
+    "west": 0.0017,
+    "east": 0.0183,
+    "south": 0.085
+   },
+   "vehicles": {
+    "west": 3.03,
+    "east": 15.37,
+    "south": 9.87
+   }
+  },
+  {
+   "t": 360.0,
+   "queue": {
+    "west": 0.17,
+    "east": 1.97,
+    "south": 1.63
+   },
+   "queueNormalised": {
+    "west": 0.0083,
+    "east": 0.0983,
+    "south": 0.0817
+   },
+   "vehicles": {
+    "west": 3.47,
+    "east": 13.27,
+    "south": 8.83
+   }
+  },
+  {
+   "t": 365.0,
+   "queue": {
+    "west": 0.2,
+    "east": 1.5,
+    "south": 0.37
+   },
+   "queueNormalised": {
+    "west": 0.01,
+    "east": 0.075,
+    "south": 0.0183
+   },
+   "vehicles": {
+    "west": 4.87,
+    "east": 14.4,
+    "south": 6.9
+   }
+  },
+  {
+   "t": 370.0,
+   "queue": {
+    "west": 0.07,
+    "east": 0.57,
+    "south": 0.17
+   },
+   "queueNormalised": {
+    "west": 0.0033,
+    "east": 0.0283,
+    "south": 0.0083
+   },
+   "vehicles": {
+    "west": 2.3,
+    "east": 14.6,
+    "south": 9.77
+   }
+  },
+  {
+   "t": 375.0,
+   "queue": {
+    "west": 0.1,
+    "east": 0.37,
+    "south": 0.87
+   },
+   "queueNormalised": {
+    "west": 0.005,
+    "east": 0.0183,
+    "south": 0.0433
+   },
+   "vehicles": {
+    "west": 4.07,
+    "east": 14.97,
+    "south": 11.63
+   }
+  },
+  {
+   "t": 380.0,
+   "queue": {
+    "west": 0.27,
+    "east": 0.57,
+    "south": 1.5
+   },
+   "queueNormalised": {
+    "west": 0.0133,
+    "east": 0.0283,
+    "south": 0.075
+   },
+   "vehicles": {
+    "west": 4.77,
+    "east": 14.73,
+    "south": 13.77
+   }
+  },
+  {
+   "t": 385.0,
+   "queue": {
+    "west": 0.4,
+    "east": 1.1,
+    "south": 1.6
+   },
+   "queueNormalised": {
+    "west": 0.02,
+    "east": 0.055,
+    "south": 0.08
+   },
+   "vehicles": {
+    "west": 5.57,
+    "east": 16.77,
+    "south": 14.33
+   }
+  },
+  {
+   "t": 390.0,
+   "queue": {
+    "west": 0.3,
+    "east": 1.27,
+    "south": 0.5
+   },
+   "queueNormalised": {
+    "west": 0.015,
+    "east": 0.0633,
+    "south": 0.025
+   },
+   "vehicles": {
+    "west": 6.2,
+    "east": 14.2,
+    "south": 14.2
+   }
+  },
+  {
+   "t": 395.0,
+   "queue": {
+    "west": 0.7,
+    "east": 1.53,
+    "south": 0.4
+   },
+   "queueNormalised": {
+    "west": 0.035,
+    "east": 0.0767,
+    "south": 0.02
+   },
+   "vehicles": {
+    "west": 6.7,
+    "east": 14.57,
+    "south": 15.13
+   }
+  },
+  {
+   "t": 400.0,
+   "queue": {
+    "west": 0.53,
+    "east": 2.77,
+    "south": 1.03
+   },
+   "queueNormalised": {
+    "west": 0.0267,
+    "east": 0.1383,
+    "south": 0.0517
+   },
+   "vehicles": {
+    "west": 8.83,
+    "east": 17.0,
+    "south": 11.23
+   }
+  },
+  {
+   "t": 405.0,
+   "queue": {
+    "west": 0.4,
+    "east": 1.2,
+    "south": 0.57
+   },
+   "queueNormalised": {
+    "west": 0.02,
+    "east": 0.06,
+    "south": 0.0283
+   },
+   "vehicles": {
+    "west": 8.07,
+    "east": 16.6,
+    "south": 6.87
+   }
+  },
+  {
+   "t": 410.0,
+   "queue": {
+    "west": 0.13,
+    "east": 1.57,
+    "south": 1.2
+   },
+   "queueNormalised": {
+    "west": 0.0067,
+    "east": 0.0783,
+    "south": 0.06
+   },
+   "vehicles": {
+    "west": 7.5,
+    "east": 19.0,
+    "south": 8.5
+   }
+  },
+  {
+   "t": 415.0,
+   "queue": {
+    "west": 0.2,
+    "east": 0.5,
+    "south": 0.8
+   },
+   "queueNormalised": {
+    "west": 0.01,
+    "east": 0.025,
+    "south": 0.04
+   },
+   "vehicles": {
+    "west": 6.93,
+    "east": 19.43,
+    "south": 9.13
+   }
+  },
+  {
+   "t": 420.0,
+   "queue": {
+    "west": 0.17,
+    "east": 0.97,
+    "south": 1.37
+   },
+   "queueNormalised": {
+    "west": 0.0083,
+    "east": 0.0483,
+    "south": 0.0683
+   },
+   "vehicles": {
+    "west": 7.7,
+    "east": 19.27,
+    "south": 9.77
+   }
+  },
+  {
+   "t": 425.0,
+   "queue": {
+    "west": 0.27,
+    "east": 0.63,
+    "south": 1.47
+   },
+   "queueNormalised": {
+    "west": 0.0133,
+    "east": 0.0317,
+    "south": 0.0733
+   },
+   "vehicles": {
+    "west": 8.13,
+    "east": 17.9,
+    "south": 9.5
+   }
+  },
+  {
+   "t": 430.0,
+   "queue": {
+    "west": 0.23,
+    "east": 0.6,
+    "south": 1.87
+   },
+   "queueNormalised": {
+    "west": 0.0117,
+    "east": 0.03,
+    "south": 0.0933
+   },
+   "vehicles": {
+    "west": 4.17,
+    "east": 14.0,
+    "south": 9.5
+   }
+  },
+  {
+   "t": 435.0,
+   "queue": {
+    "west": 0.13,
+    "east": 0.63,
+    "south": 2.53
+   },
+   "queueNormalised": {
+    "west": 0.0067,
+    "east": 0.0317,
+    "south": 0.1267
+   },
+   "vehicles": {
+    "west": 2.1,
+    "east": 9.53,
+    "south": 9.9
+   }
+  },
+  {
+   "t": 440.0,
+   "queue": {
+    "west": 0.1,
+    "east": 0.4,
+    "south": 2.03
+   },
+   "queueNormalised": {
+    "west": 0.005,
+    "east": 0.02,
+    "south": 0.1017
+   },
+   "vehicles": {
+    "west": 2.67,
+    "east": 9.7,
+    "south": 7.7
+   }
+  },
+  {
+   "t": 445.0,
+   "queue": {
+    "west": 0.33,
+    "east": 0.33,
+    "south": 2.13
+   },
+   "queueNormalised": {
+    "west": 0.0167,
+    "east": 0.0167,
+    "south": 0.1067
+   },
+   "vehicles": {
+    "west": 5.8,
+    "east": 9.13,
+    "south": 8.43
+   }
+  },
+  {
+   "t": 450.0,
+   "queue": {
+    "west": 0.6,
+    "east": 0.4,
+    "south": 1.43
+   },
+   "queueNormalised": {
+    "west": 0.03,
+    "east": 0.02,
+    "south": 0.0717
+   },
+   "vehicles": {
+    "west": 8.17,
+    "east": 10.57,
+    "south": 5.1
+   }
+  },
+  {
+   "t": 455.0,
+   "queue": {
+    "west": 1.5,
+    "east": 0.57,
+    "south": 1.7
+   },
+   "queueNormalised": {
+    "west": 0.075,
+    "east": 0.0283,
+    "south": 0.085
+   },
+   "vehicles": {
+    "west": 7.23,
+    "east": 7.63,
+    "south": 6.63
+   }
+  },
+  {
+   "t": 460.0,
+   "queue": {
+    "west": 0.57,
+    "east": 0.6,
+    "south": 1.4
+   },
+   "queueNormalised": {
+    "west": 0.0283,
+    "east": 0.03,
+    "south": 0.07
+   },
+   "vehicles": {
+    "west": 8.13,
+    "east": 9.5,
+    "south": 7.33
+   }
+  },
+  {
+   "t": 465.0,
+   "queue": {
+    "west": 0.53,
+    "east": 0.43,
+    "south": 0.93
+   },
+   "queueNormalised": {
+    "west": 0.0267,
+    "east": 0.0217,
+    "south": 0.0467
+   },
+   "vehicles": {
+    "west": 8.47,
+    "east": 10.07,
+    "south": 5.8
+   }
+  },
+  {
+   "t": 470.0,
+   "queue": {
+    "west": 0.63,
+    "east": 0.4,
+    "south": 0.47
+   },
+   "queueNormalised": {
+    "west": 0.0317,
+    "east": 0.02,
+    "south": 0.0233
+   },
+   "vehicles": {
+    "west": 11.57,
+    "east": 10.3,
+    "south": 7.63
+   }
+  },
+  {
+   "t": 475.0,
+   "queue": {
+    "west": 2.87,
+    "east": 0.27,
+    "south": 0.27
+   },
+   "queueNormalised": {
+    "west": 0.1433,
+    "east": 0.0133,
+    "south": 0.0133
+   },
+   "vehicles": {
+    "west": 14.37,
+    "east": 11.93,
+    "south": 5.83
+   }
+  },
+  {
+   "t": 480.0,
+   "queue": {
+    "west": 5.23,
+    "east": 0.27,
+    "south": 0.7
+   },
+   "queueNormalised": {
+    "west": 0.2617,
+    "east": 0.0133,
+    "south": 0.035
+   },
+   "vehicles": {
+    "west": 14.6,
+    "east": 11.1,
+    "south": 5.73
+   }
+  },
+  {
+   "t": 485.0,
+   "queue": {
+    "west": 4.0,
+    "east": 0.4,
+    "south": 2.73
+   },
+   "queueNormalised": {
+    "west": 0.2,
+    "east": 0.02,
+    "south": 0.1367
+   },
+   "vehicles": {
+    "west": 13.33,
+    "east": 13.37,
+    "south": 7.8
+   }
+  },
+  {
+   "t": 490.0,
+   "queue": {
+    "west": 1.4,
+    "east": 0.1,
+    "south": 2.3
+   },
+   "queueNormalised": {
+    "west": 0.07,
+    "east": 0.005,
+    "south": 0.115
+   },
+   "vehicles": {
+    "west": 13.3,
+    "east": 14.4,
+    "south": 8.27
+   }
+  },
+  {
+   "t": 495.0,
+   "queue": {
+    "west": 1.97,
+    "east": 0.17,
+    "south": 1.77
+   },
+   "queueNormalised": {
+    "west": 0.0983,
+    "east": 0.0083,
+    "south": 0.0883
+   },
+   "vehicles": {
+    "west": 12.2,
+    "east": 9.0,
+    "south": 8.57
+   }
+  },
+  {
+   "t": 500.0,
+   "queue": {
+    "west": 1.1,
+    "east": 0.3,
+    "south": 1.37
+   },
+   "queueNormalised": {
+    "west": 0.055,
+    "east": 0.015,
+    "south": 0.0683
+   },
+   "vehicles": {
+    "west": 10.63,
+    "east": 8.63,
+    "south": 7.9
+   }
+  },
+  {
+   "t": 505.0,
+   "queue": {
+    "west": 0.67,
+    "east": 0.37,
+    "south": 1.4
+   },
+   "queueNormalised": {
+    "west": 0.0333,
+    "east": 0.0183,
+    "south": 0.07
+   },
+   "vehicles": {
+    "west": 10.37,
+    "east": 11.5,
+    "south": 8.97
+   }
+  },
+  {
+   "t": 510.0,
+   "queue": {
+    "west": 0.4,
+    "east": 1.37,
+    "south": 1.07
+   },
+   "queueNormalised": {
+    "west": 0.02,
+    "east": 0.0683,
+    "south": 0.0533
+   },
+   "vehicles": {
+    "west": 11.6,
+    "east": 14.73,
+    "south": 9.17
+   }
+  },
+  {
+   "t": 515.0,
+   "queue": {
+    "west": 0.43,
+    "east": 1.23,
+    "south": 0.17
+   },
+   "queueNormalised": {
+    "west": 0.0217,
+    "east": 0.0617,
+    "south": 0.0083
+   },
+   "vehicles": {
+    "west": 7.73,
+    "east": 15.57,
+    "south": 9.9
+   }
+  },
+  {
+   "t": 520.0,
+   "queue": {
+    "west": 0.53,
+    "east": 3.07,
+    "south": 1.1
+   },
+   "queueNormalised": {
+    "west": 0.0267,
+    "east": 0.1533,
+    "south": 0.055
+   },
+   "vehicles": {
+    "west": 7.8,
+    "east": 16.9,
+    "south": 11.7
+   }
+  },
+  {
+   "t": 525.0,
+   "queue": {
+    "west": 0.13,
+    "east": 3.47,
+    "south": 0.9
+   },
+   "queueNormalised": {
+    "west": 0.0067,
+    "east": 0.1733,
+    "south": 0.045
+   },
+   "vehicles": {
+    "west": 3.73,
+    "east": 17.1,
+    "south": 13.03
+   }
+  },
+  {
+   "t": 530.0,
+   "queue": {
+    "west": 0.23,
+    "east": 1.77,
+    "south": 2.93
+   },
+   "queueNormalised": {
+    "west": 0.0117,
+    "east": 0.0883,
+    "south": 0.1467
+   },
+   "vehicles": {
+    "west": 5.77,
+    "east": 19.4,
+    "south": 13.17
+   }
+  },
+  {
+   "t": 535.0,
+   "queue": {
+    "west": 0.1,
+    "east": 3.73,
+    "south": 3.67
+   },
+   "queueNormalised": {
+    "west": 0.005,
+    "east": 0.1867,
+    "south": 0.1833
+   },
+   "vehicles": {
+    "west": 4.23,
+    "east": 19.57,
+    "south": 15.4
+   }
+  },
+  {
+   "t": 540.0,
+   "queue": {
+    "west": 0.33,
+    "east": 1.83,
+    "south": 1.1
+   },
+   "queueNormalised": {
+    "west": 0.0167,
+    "east": 0.0917,
+    "south": 0.055
+   },
+   "vehicles": {
+    "west": 4.6,
+    "east": 18.5,
+    "south": 13.9
+   }
+  },
+  {
+   "t": 545.0,
+   "queue": {
+    "west": 0.27,
+    "east": 2.9,
+    "south": 0.8
+   },
+   "queueNormalised": {
+    "west": 0.0133,
+    "east": 0.145,
+    "south": 0.04
+   },
+   "vehicles": {
+    "west": 6.43,
+    "east": 17.57,
+    "south": 9.47
+   }
+  },
+  {
+   "t": 550.0,
+   "queue": {
+    "west": 0.33,
+    "east": 2.07,
+    "south": 1.33
+   },
+   "queueNormalised": {
+    "west": 0.0167,
+    "east": 0.1033,
+    "south": 0.0667
+   },
+   "vehicles": {
+    "west": 4.9,
+    "east": 16.23,
+    "south": 13.7
+   }
+  },
+  {
+   "t": 555.0,
+   "queue": {
+    "west": 0.47,
+    "east": 1.13,
+    "south": 1.13
+   },
+   "queueNormalised": {
+    "west": 0.0233,
+    "east": 0.0567,
+    "south": 0.0567
+   },
+   "vehicles": {
+    "west": 4.77,
+    "east": 17.43,
+    "south": 14.67
+   }
+  },
+  {
+   "t": 560.0,
+   "queue": {
+    "west": 0.13,
+    "east": 2.4,
+    "south": 0.73
+   },
+   "queueNormalised": {
+    "west": 0.0067,
+    "east": 0.12,
+    "south": 0.0367
+   },
+   "vehicles": {
+    "west": 6.2,
+    "east": 17.67,
+    "south": 12.03
+   }
+  },
+  {
+   "t": 565.0,
+   "queue": {
+    "west": 0.17,
+    "east": 3.53,
+    "south": 0.9
+   },
+   "queueNormalised": {
+    "west": 0.0083,
+    "east": 0.1767,
+    "south": 0.045
+   },
+   "vehicles": {
+    "west": 6.37,
+    "east": 17.83,
+    "south": 8.03
+   }
+  },
+  {
+   "t": 570.0,
+   "queue": {
+    "west": 0.3,
+    "east": 2.7,
+    "south": 1.17
+   },
+   "queueNormalised": {
+    "west": 0.015,
+    "east": 0.135,
+    "south": 0.0583
+   },
+   "vehicles": {
+    "west": 8.2,
+    "east": 16.63,
+    "south": 11.1
+   }
+  },
+  {
+   "t": 575.0,
+   "queue": {
+    "west": 0.07,
+    "east": 1.47,
+    "south": 1.7
+   },
+   "queueNormalised": {
+    "west": 0.0033,
+    "east": 0.0733,
+    "south": 0.085
+   },
+   "vehicles": {
+    "west": 7.47,
+    "east": 15.67,
+    "south": 11.93
+   }
+  },
+  {
+   "t": 580.0,
+   "queue": {
+    "west": 0.1,
+    "east": 1.83,
+    "south": 1.73
+   },
+   "queueNormalised": {
+    "west": 0.005,
+    "east": 0.0917,
+    "south": 0.0867
+   },
+   "vehicles": {
+    "west": 4.57,
+    "east": 20.13,
+    "south": 11.2
+   }
+  },
+  {
+   "t": 585.0,
+   "queue": {
+    "west": 0.23,
+    "east": 1.4,
+    "south": 1.03
+   },
+   "queueNormalised": {
+    "west": 0.0117,
+    "east": 0.07,
+    "south": 0.0517
+   },
+   "vehicles": {
+    "west": 4.2,
+    "east": 19.17,
+    "south": 9.57
+   }
+  },
+  {
+   "t": 590.0,
+   "queue": {
+    "west": 0.17,
+    "east": 0.73,
+    "south": 0.9
+   },
+   "queueNormalised": {
+    "west": 0.0083,
+    "east": 0.0367,
+    "south": 0.045
+   },
+   "vehicles": {
+    "west": 5.67,
+    "east": 16.9,
+    "south": 11.03
+   }
+  },
+  {
+   "t": 595.0,
+   "queue": {
+    "west": 0.2,
+    "east": 1.6,
+    "south": 1.17
+   },
+   "queueNormalised": {
+    "west": 0.01,
+    "east": 0.08,
+    "south": 0.0583
+   },
+   "vehicles": {
+    "west": 7.7,
+    "east": 17.37,
+    "south": 9.17
+   }
+  }
+ ]
+}

@@ -83,7 +83,7 @@ export function FeedCard({ arm, state, clock, duration, vehicles }: Props) {
           <span className="dot dot-red" />
           LIVE
         </span>
-        {vehicles !== undefined && <span className="feed-badge count num">{vehicles} vehicles</span>}
+        {vehicles !== undefined && <span className="feed-badge count num">{Math.round(vehicles)} vehicles</span>}
         <div className="feed-progress" aria-hidden="true">
           <div style={{ width: `${(clock.t / duration) * 100}%` }} />
         </div>

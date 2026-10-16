@@ -1,0 +1,361 @@
+{
+ "generatedAt": "2026-10-16T18:13:32+05:30",
+ "clipS": 600.0,
+ "calibration": "uncalibrated",
+ "openLoop": true,
+ "label": "Observed on Chennai footage",
+ "note": "Open-loop replay of recorded footage: the signal decisions do not change the video, so these numbers describe what each controller decided on the same traffic, not which one moves traffic better. Perception is uncalibrated (pixel-based speeds; rough queue counts).",
+ "perception": {
+  "west": {
+   "meanInView": 6.49,
+   "maxInView": 18,
+   "uniqueTracks": 689,
+   "meanQueueApprox": 0.85
+  },
+  "east": {
+   "meanInView": 14.41,
+   "maxInView": 28,
+   "uniqueTracks": 1012,
+   "meanQueueApprox": 1.13
+  },
+  "south": {
+   "meanInView": 9.94,
+   "maxInView": 22,
+   "uniqueTracks": 740,
+   "meanQueueApprox": 1.41
+  }
+ },
+ "ppo": {
+  "durationS": 600.0,
+  "decisions": 20,
+  "switches": 20,
+  "switchesPerH": 120.0,
+  "share": {
+   "west": {
+    "green": 0.4167,
+    "yellow": 0.05,
+    "red": 0.5333
+   },
+   "east": {
+    "green": 0.4167,
+    "yellow": 0.045,
+    "red": 0.5383
+   },
+   "south": {
+    "green": 0.4167,
+    "yellow": 0.05,
+    "red": 0.5333
+   }
+  },
+  "latencyMs": {
+   "mean": 580.9177199220993,
+   "p50": 484.6677000023192,
+   "p95": 1085.4401899938237,
+   "max": 5251.6829000087455
+  },
+  "extensions": 0,
+  "governorOverrides": 1,
+  "governorActionChanged": 1,
+  "governorRules": {
+   "rule1_all_empty_round_robin": 1
+  },
+  "durationRequestsS": {
+   "15": 1,
+   "30": 19
+  },
+  "proposedPhases": {
+   "NS-through": 10,
+   "EW-through": 10
+  },
+  "governedPhases": {
+   "NS-through": 10,
+   "EW-through": 10
+  },
+  "decisionLog": [
+   {
+    "t": 0.0,
+    "proposed": "NS-through",
+    "governed": "NS-through",
+    "greenArms": [
+     "south"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 30.0,
+    "proposed": "EW-through",
+    "governed": "EW-through",
+    "greenArms": [
+     "west",
+     "east"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 60.0,
+    "proposed": "NS-through",
+    "governed": "NS-through",
+    "greenArms": [
+     "south"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 90.0,
+    "proposed": "EW-through",
+    "governed": "EW-through",
+    "greenArms": [
+     "west",
+     "east"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 120.0,
+    "proposed": "NS-through",
+    "governed": "NS-through",
+    "greenArms": [
+     "south"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 150.0,
+    "proposed": "EW-through",
+    "governed": "EW-through",
+    "greenArms": [
+     "west",
+     "east"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 180.0,
+    "proposed": "NS-through",
+    "governed": "NS-through",
+    "greenArms": [
+     "south"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 210.0,
+    "proposed": "EW-through",
+    "governed": "EW-through",
+    "greenArms": [
+     "west",
+     "east"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 240.0,
+    "proposed": "NS-through",
+    "governed": "NS-through",
+    "greenArms": [
+     "south"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 270.0,
+    "proposed": "EW-through",
+    "governed": "EW-through",
+    "greenArms": [
+     "west",
+     "east"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 300.0,
+    "proposed": "NS-through",
+    "governed": "NS-through",
+    "greenArms": [
+     "south"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 330.0,
+    "proposed": "EW-through",
+    "governed": "EW-through",
+    "greenArms": [
+     "west",
+     "east"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 360.0,
+    "proposed": "NS-through",
+    "governed": "NS-through",
+    "greenArms": [
+     "south"
+    ],
+    "switch": true,
+    "override": true,
+    "rule": "rule1_all_empty_round_robin",
+    "requestedDurationS": 15.0
+   },
+   {
+    "t": 390.0,
+    "proposed": "EW-through",
+    "governed": "EW-through",
+    "greenArms": [
+     "west",
+     "east"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 420.0,
+    "proposed": "NS-through",
+    "governed": "NS-through",
+    "greenArms": [
+     "south"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 450.0,
+    "proposed": "EW-through",
+    "governed": "EW-through",
+    "greenArms": [
+     "west",
+     "east"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 480.0,
+    "proposed": "NS-through",
+    "governed": "NS-through",
+    "greenArms": [
+     "south"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 510.0,
+    "proposed": "EW-through",
+    "governed": "EW-through",
+    "greenArms": [
+     "west",
+     "east"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 540.0,
+    "proposed": "NS-through",
+    "governed": "NS-through",
+    "greenArms": [
+     "south"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   },
+   {
+    "t": 570.0,
+    "proposed": "EW-through",
+    "governed": "EW-through",
+    "greenArms": [
+     "west",
+     "east"
+    ],
+    "switch": true,
+    "override": false,
+    "rule": null,
+    "requestedDurationS": 30.0
+   }
+  ],
+  "run": "ppo_20261016_173809",
+  "provisional": true,
+  "rewardLabel": "OLD"
+ },
+ "roundRobin": {
+  "durationS": 600.0,
+  "decisions": 20,
+  "switches": 19,
+  "switchesPerH": 114.0,
+  "share": {
+   "west": {
+    "green": 0.2917,
+    "yellow": 0.035,
+    "red": 0.6733
+   },
+   "east": {
+    "green": 0.2917,
+    "yellow": 0.035,
+    "red": 0.6733
+   },
+   "south": {
+    "green": 0.25,
+    "yellow": 0.03,
+    "red": 0.72
+   }
+  },
+  "latencyMs": {
+   "mean": 581.4301241735413,
+   "p50": 486.50699999416247,
+   "p95": 1069.0561900104512,
+   "max": 8025.952199997846
+  },
+  "signalTiming": "Assumed signal timing (no signal visible in footage)",
+  "run": "round_robin_20261016_173813"
+ }
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState, useSyncExternalStore } from 'react'
 import { clock, dataSource } from './index'
 import { useMode } from './modeContext'
-import type { Decision, DeviceStatus, Metrics, MetricsRange, ModeChange } from './types'
+import type { Decision, DeviceStatus, Evidence, Metrics, MetricsRange, ModeChange } from './types'
 
 export { useMode }
 
@@ -44,6 +44,11 @@ export function useModeHistory() {
 
 export function useMetrics(range: MetricsRange) {
   return useResource<Metrics>(() => dataSource.getMetrics(range), range)
+}
+
+/** Recorded-run provenance and results (static source only; null otherwise). */
+export function useEvidence() {
+  return useResource<Evidence | null>(() => dataSource.getEvidence(), 'evidence')
 }
 
 export function useDecision(): Decision | null {

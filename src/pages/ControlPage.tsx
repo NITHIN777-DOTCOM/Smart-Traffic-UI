@@ -1,4 +1,4 @@
-import { useModeHistory, useMode, useStatus } from '../data/hooks'
+import { useEvidence, useModeHistory, useMode, useStatus } from '../data/hooks'
 import './control.css'
 
 import { MODE_LABEL } from '../data/labels'
@@ -10,6 +10,10 @@ export function ControlPage() {
   const { mode, pending, error, setMode } = useMode()
   const { data: status } = useStatus()
   const { data: history } = useModeHistory()
+  const { data: evidence } = useEvidence()
+  const replay = evidence !== null && evidence !== undefined
+  const assumed = evidence?.runInfo.signalTimingLabel
+  const placeholder = status?.placeholder === true
 
   const on = (pending ?? mode) === 'ppo'
   const heading = mode === null ? 'Loading…' : mode === 'ppo' ? 'AI Adaptive (PPO model)' : 'Round-robin mode'
@@ -18,7 +22,11 @@ export function ControlPage() {
     <main className="page control-page">
       <div className="page-title">
         <h1>System Control</h1>
-        <p>Choose how the Raspberry Pi drives the junction signals.</p>
+        <p>
+          {replay
+            ? 'Choose which recorded run the Live Junction replays. No device is connected: the switch selects the PPO or round-robin timeline.'
+            : 'Choose how the Raspberry Pi drives the junction signals.'}
+        </p>
       </div>
 
       <section aria-label="AI mode switch" className="card mode-card">
@@ -28,6 +36,10 @@ export function ControlPage() {
           <span className="mode-desc">
             {pending
               ? `Switching to ${MODE_LABEL[pending]}… waiting for the current yellow and all-red clearance to finish.`
+              : replay
+                ? mode === 'ppo'
+                  ? `Replaying the PPO model's decisions on the Chennai footage (${evidence?.runInfo.modelFile}, decision every ${evidence?.runInfo.decisionIntervalS} s). Open loop: the footage does not react to the signals.`
+                  : `Replaying the round-robin cycle West → East → South, 25 s green + 5 s clearance. ${assumed}.`
               : mode === 'ppo'
                 ? 'The model picks the next green phase and how long it lasts from the live camera feeds. Switch off to fall back to the fixed round-robin cycle.'
                 : 'Signals rotate through each arm on a fixed cycle. Switch on to let the PPO model choose phases from the camera feeds.'}
@@ -57,6 +69,7 @@ export function ControlPage() {
           title="Switch OFF → Round robin"
           subtitle="Fixed cycle"
           body="Signals rotate West → East → South with a fixed green time. No camera input is used."
+          note={assumed}
         />
         <ModeCard
           active={mode === 'ppo'}
@@ -66,27 +79,32 @@ export function ControlPage() {
         />
       </div>
 
-      <section aria-label="Device status" className="status-grid">
+      {placeholder && (
+        <p className="muted placeholder-note">
+          Device status: placeholder — no Raspberry Pi or ESP32 is connected while recorded runs are replayed.
+        </p>
+      )}
+      <section aria-label="Device status" className={`status-grid${placeholder ? ' placeholder' : ''}`}>
         <div className="tile">
           <span className="eyebrow">Raspberry Pi</span>
           <span className="tile-value">
             <span className={`dot dot-lg ${status?.piOnline ? 'dot-green' : 'dot-red'}`} />
-            {status ? (status.piOnline ? 'Online' : 'Offline') : '—'}
+            {status ? (placeholder ? 'Not connected' : status.piOnline ? 'Online' : 'Offline') : '—'}
           </span>
-          <span className="muted tile-sub">{status?.ip ?? 'IP unknown'}</span>
+          <span className="muted tile-sub">{placeholder ? 'Placeholder' : (status?.ip ?? 'IP unknown')}</span>
         </div>
         <div className="tile">
           <span className="eyebrow">Signal controller</span>
           <span className="tile-value">
             <span className={`dot dot-lg ${status?.esp32 ? 'dot-green' : 'dot-red'}`} />
-            {status ? (status.esp32 ? 'ESP32 linked' : 'ESP32 not linked') : '—'}
+            {status ? (placeholder ? 'Not connected' : status.esp32 ? 'ESP32 linked' : 'ESP32 not linked') : '—'}
           </span>
-          <span className="muted tile-sub">Serial / Wi-Fi</span>
+          <span className="muted tile-sub">{placeholder ? 'Placeholder' : 'Serial / Wi-Fi'}</span>
         </div>
         <div className="tile">
           <span className="eyebrow">Cameras</span>
           <span className="tile-value num">{status ? `${status.cameras} / 3 feeds` : '—'}</span>
-          <span className="muted tile-sub">Recorded 10-min clips</span>
+          <span className="muted tile-sub">Recorded 10-min clips{placeholder ? ' · placeholder' : ''}</span>
         </div>
         <div className="tile">
           <span className="eyebrow">Last switched</span>
@@ -116,7 +134,7 @@ export function ControlPage() {
   )
 }
 
-function ModeCard(props: { active: boolean; title: string; subtitle: string; body: string }) {
+function ModeCard(props: { active: boolean; title: string; subtitle: string; body: string; note?: string }) {
   return (
     <article className={`card mode-explainer${props.active ? ' active' : ''}`}>
       <div className="explainer-head">
@@ -125,6 +143,7 @@ function ModeCard(props: { active: boolean; title: string; subtitle: string; bod
       </div>
       <span className="explainer-sub">{props.subtitle}</span>
       <p className="muted">{props.body}</p>
+      {props.note && <span className="pill assumed-pill">{props.note}</span>}
     </article>
   )
 }

@@ -2,6 +2,7 @@ import type {
   DataSource,
   Decision,
   DeviceStatus,
+  Evidence,
   Metrics,
   MetricsRange,
   Mode,
@@ -59,6 +60,11 @@ export class ApiDataSource implements DataSource {
   // TODO: metrics endpoint not specified yet — e.g. GET /api/metrics?range=clip|session → Metrics
   getMetrics(range: MetricsRange): Promise<Metrics> {
     return this.json<Metrics>(`/api/metrics?range=${range}`)
+  }
+
+  // TODO: the Pi gateway has no evidence endpoint yet; recorded-run results come from the static source.
+  async getEvidence(): Promise<Evidence | null> {
+    return null
   }
 
   private async json<T>(path: string, init?: RequestInit): Promise<T> {

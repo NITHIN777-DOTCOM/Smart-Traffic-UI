@@ -6,16 +6,19 @@ import {
   Legend,
   Line,
   LineChart,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts'
+import { ChartCard } from '../components/charts'
+import { AXIS, GRID, LEGEND, TOOLTIP } from '../components/chartStyle'
 import { METRICS, type MetricDef } from '../config/metrics'
+import { dataSourceKind } from '../data'
 import { useMetrics, useMode } from '../data/hooks'
 import { ARM_LABEL, MODE_LABEL, SIGNAL_LABEL } from '../data/labels'
 import { ARMS, formatClock } from '../data/signals'
 import type { Metrics, MetricsRange, Mode } from '../data/types'
+import { EvidenceDashboard } from './EvidenceDashboard'
 import './dashboard.css'
 
 const RANGES: { id: MetricsRange; label: string }[] = [
@@ -23,31 +26,17 @@ const RANGES: { id: MetricsRange; label: string }[] = [
   { id: 'session', label: 'Whole session' },
 ]
 
-const AXIS = { stroke: 'var(--divider)', tick: { fill: 'var(--muted)', fontSize: 12 } }
-const GRID = <CartesianGrid stroke="var(--divider)" vertical={false} />
-const TOOLTIP = {
-  contentStyle: {
-    background: 'var(--header)',
-    border: '1px solid var(--border)',
-    borderRadius: 10,
-    color: 'var(--text)',
-    fontSize: 13,
-  },
-  labelStyle: { color: 'var(--muted)' },
-  itemStyle: { color: 'var(--text)' },
-  cursor: { fill: 'var(--divider)', opacity: 0.5 },
-}
-const LEGEND = {
-  wrapperStyle: { fontSize: 13 },
-  iconSize: 12,
-  formatter: (v: string) => <span style={{ color: 'var(--text)' }}>{v}</span>,
-}
 /** The mode that isn't running stays visible for comparison, but dimmed. */
 const INACTIVE_OPACITY = 0.4
 
 const summaryKey = (mode: Mode) => (mode === 'round_robin' ? 'roundRobin' : 'ppo')
 
 export function DashboardPage() {
+  return dataSourceKind === 'static' ? <EvidenceDashboard /> : <SimulatedDashboard />
+}
+
+/** Mock / API metrics: simulated queues, waits and throughput for both controllers. */
+function SimulatedDashboard() {
   const [range, setRange] = useState<MetricsRange>('clip')
   const { data: m, error } = useMetrics(range)
   const { mode } = useMode()
@@ -218,22 +207,6 @@ function Charts({ m, mode }: { m: Metrics; mode: Mode | null }) {
   )
 }
 
-function ChartCard({ title, sub, children }: { title: string; sub: string; children: React.ReactElement }) {
-  return (
-    <section className="card chart-card">
-      <div className="chart-head">
-        <h2>{title}</h2>
-        <span className="muted">{sub}</span>
-      </div>
-      <div className="chart-body">
-        <ResponsiveContainer width="100%" height="100%">
-          {children}
-        </ResponsiveContainer>
-      </div>
-    </section>
-  )
-}
-
 function DecisionTable({ m, mode }: { m: Metrics; mode: Mode }) {
   const decisions = m.decisions[summaryKey(mode)]
   return (
@@ -260,7 +233,7 @@ function DecisionTable({ m, mode }: { m: Metrics; mode: Mode }) {
             {decisions.map((d) => (
               <tr key={d.t}>
                 <td className="num">{formatClock(d.t)}</td>
-                <td>{ARM_LABEL[d.arm]}</td>
+                <td>{d.arms.map((a) => ARM_LABEL[a]).join(' + ')}</td>
                 <td>
                   <span className="sig-cell">
                     <span className={`dot dot-lg dot-${d.signal}`} />
@@ -268,7 +241,7 @@ function DecisionTable({ m, mode }: { m: Metrics; mode: Mode }) {
                   </span>
                 </td>
                 <td className="num">{d.durationS} s</td>
-                <td className="num">{d.queue[d.arm]}</td>
+                <td className="num">{d.arms.reduce((n, a) => n + d.queue[a], 0)}</td>
               </tr>
             ))}
           </tbody>

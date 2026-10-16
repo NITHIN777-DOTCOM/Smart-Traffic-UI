@@ -1,7 +1,9 @@
 [
  {
   "t": 0,
-  "arm": "west",
+  "arms": [
+   "west"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -17,7 +19,9 @@
  },
  {
   "t": 20,
-  "arm": "east",
+  "arms": [
+   "east"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -33,7 +37,9 @@
  },
  {
   "t": 40,
-  "arm": "west",
+  "arms": [
+   "west"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -49,7 +55,9 @@
  },
  {
   "t": 60,
-  "arm": "south",
+  "arms": [
+   "south"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -65,7 +73,9 @@
  },
  {
   "t": 80,
-  "arm": "east",
+  "arms": [
+   "east"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -81,7 +91,9 @@
  },
  {
   "t": 100,
-  "arm": "west",
+  "arms": [
+   "west"
+  ],
   "signal": "green",
   "durationS": 20,
   "queue": {
@@ -97,7 +109,9 @@
  },
  {
   "t": 125,
-  "arm": "east",
+  "arms": [
+   "east"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -113,7 +127,9 @@
  },
  {
   "t": 145,
-  "arm": "west",
+  "arms": [
+   "west"
+  ],
   "signal": "green",
   "durationS": 20,
   "queue": {
@@ -129,7 +145,9 @@
  },
  {
   "t": 170,
-  "arm": "south",
+  "arms": [
+   "south"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -145,7 +163,9 @@
  },
  {
   "t": 190,
-  "arm": "east",
+  "arms": [
+   "east"
+  ],
   "signal": "green",
   "durationS": 20,
   "queue": {
@@ -161,7 +181,9 @@
  },
  {
   "t": 215,
-  "arm": "west",
+  "arms": [
+   "west"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -177,7 +199,9 @@
  },
  {
   "t": 235,
-  "arm": "south",
+  "arms": [
+   "south"
+  ],
   "signal": "green",
   "durationS": 20,
   "queue": {
@@ -193,7 +217,9 @@
  },
  {
   "t": 260,
-  "arm": "east",
+  "arms": [
+   "east"
+  ],
   "signal": "green",
   "durationS": 20,
   "queue": {
@@ -209,7 +235,9 @@
  },
  {
   "t": 285,
-  "arm": "west",
+  "arms": [
+   "west"
+  ],
   "signal": "green",
   "durationS": 25,
   "queue": {
@@ -225,7 +253,9 @@
  },
  {
   "t": 315,
-  "arm": "east",
+  "arms": [
+   "east"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -241,7 +271,9 @@
  },
  {
   "t": 335,
-  "arm": "south",
+  "arms": [
+   "south"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -257,7 +289,9 @@
  },
  {
   "t": 355,
-  "arm": "west",
+  "arms": [
+   "west"
+  ],
   "signal": "green",
   "durationS": 20,
   "queue": {
@@ -273,7 +307,9 @@
  },
  {
   "t": 380,
-  "arm": "east",
+  "arms": [
+   "east"
+  ],
   "signal": "green",
   "durationS": 25,
   "queue": {
@@ -289,7 +325,9 @@
  },
  {
   "t": 410,
-  "arm": "west",
+  "arms": [
+   "west"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -305,7 +343,9 @@
  },
  {
   "t": 430,
-  "arm": "south",
+  "arms": [
+   "south"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -321,7 +361,9 @@
  },
  {
   "t": 450,
-  "arm": "east",
+  "arms": [
+   "east"
+  ],
   "signal": "green",
   "durationS": 25,
   "queue": {
@@ -337,7 +379,9 @@
  },
  {
   "t": 480,
-  "arm": "west",
+  "arms": [
+   "west"
+  ],
   "signal": "green",
   "durationS": 25,
   "queue": {
@@ -353,7 +397,9 @@
  },
  {
   "t": 510,
-  "arm": "south",
+  "arms": [
+   "south"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -369,7 +415,9 @@
  },
  {
   "t": 530,
-  "arm": "east",
+  "arms": [
+   "east"
+  ],
   "signal": "green",
   "durationS": 15,
   "queue": {
@@ -385,7 +433,9 @@
  },
  {
   "t": 550,
-  "arm": "west",
+  "arms": [
+   "west"
+  ],
   "signal": "green",
   "durationS": 30,
   "queue": {
@@ -401,7 +451,9 @@
  },
  {
   "t": 585,
-  "arm": "south",
+  "arms": [
+   "south"
+  ],
   "signal": "green",
   "durationS": 10,
   "queue": {

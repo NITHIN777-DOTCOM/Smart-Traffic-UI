@@ -133,6 +133,34 @@ p {
   background: var(--muted);
 }
 
+.header-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Shown whenever the replayed model was not trained on the aligned reward. */
+.provisional-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: var(--radius-button);
+  border: 1px solid var(--sig-yellow);
+  background: var(--sig-yellow-off);
+  color: var(--sig-yellow);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Marks the round-robin cycle as an assumption (no signal is visible in the footage). */
+.assumed-pill {
+  border-style: dashed;
+  color: var(--muted);
+  white-space: normal;
+}
+
 /* ---------- Page scaffolding ---------- */
 
 .page {
