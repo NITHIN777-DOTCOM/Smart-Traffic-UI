@@ -13,6 +13,8 @@ export const SESSION_S = 3600
 export const CLIP_SEED = 7
 export const SESSION_SEED = 11
 export const RR_GREEN_S = 30
+/** Shortest green worth starting; a smaller gap before the horizon goes to the previous green. */
+const MIN_GREEN_S = 10
 /** Vehicles discharged per second of green. */
 const SAT_FLOW = 0.55
 /** Mean arrivals per second before surges. */
@@ -125,7 +127,12 @@ export function simulate(
   let t = 0
   let last: Arm | null = null
   while (t < horizonS) {
-    const { arm, durationS } = controller.next(t, { ...queue }, last)
+    const next = controller.next(t, { ...queue }, last)
+    const arm = next.arm
+    // Fit the last cycle to the horizon so the clip ends after its yellow and all-red,
+    // rather than cutting a green short when the clip loops.
+    const left = horizonS - t - CLEARANCE_S
+    const durationS = left - next.durationS < MIN_GREEN_S + CLEARANCE_S ? Math.max(1, left) : next.durationS
     const vehicles = perArm((a) => queue[a] + Math.floor(rand() * 4))
     res.decisions.push({
       t,

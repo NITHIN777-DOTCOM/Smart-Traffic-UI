@@ -46,7 +46,9 @@
   background: var(--bg);
 }
 
+/* Clip (not just hide) cars past the far ends, or they grow the scroll area and toggle scrollbars. */
 .junction-grid {
+  overflow: clip;
   min-width: 1180px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 296px minmax(0, 1fr);
@@ -326,15 +328,16 @@
   gap: 12px;
 }
 
+/* One line only: the signal chip's text changes every second and must never change the card's height. */
 .feed-head {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
 }
 
 .feed-title {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -357,6 +360,7 @@
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  flex: none;
 }
 
 .sig-green {

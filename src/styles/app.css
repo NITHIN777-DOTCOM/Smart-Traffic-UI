@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+/* Always reserve the scrollbar's space, so content that grows or shrinks never changes the page width. */
+html {
+  scrollbar-gutter: stable;
+}
+
 html,
 body {
   margin: 0;

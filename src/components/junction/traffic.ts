@@ -123,9 +123,10 @@ export class TrafficEngine {
   private step(dt: number): void {
     const snap = this.clock.getSnapshot()
     const t = this.clock.now()
-    // Seeking (or a large jump) rebuilds the scene from the current signal state.
-    // The >3 s check catches the clip looping back to 0:00 and a backgrounded tab resuming.
-    if (snap.seekId !== this.lastSeekId || Math.abs(t - this.lastClipT) > 3) ARMS.forEach((a) => this.needsReset.add(a))
+    // Seeking (or a large jump, e.g. a backgrounded tab resuming) rebuilds the scene from the
+    // current signal state. The clip looping back to 0:00 is not a jump: traffic carries on.
+    const jump = (t - this.lastClipT + this.clock.duration) % this.clock.duration
+    if (snap.seekId !== this.lastSeekId || jump > 3) ARMS.forEach((a) => this.needsReset.add(a))
     this.lastSeekId = snap.seekId
     this.lastClipT = t
 

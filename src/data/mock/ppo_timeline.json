@@ -403,7 +403,7 @@
   "t": 585,
   "arm": "south",
   "signal": "green",
-  "durationS": 25,
+  "durationS": 10,
   "queue": {
    "west": 0,
    "east": 6,
