@@ -58,3 +58,9 @@ tmp/
 videos/*
 !videos/.gitkeep
 public/videos/*.mp4
+
+# Python bridge (Option 1: bridge/)
+bridge/.venv/
+bridge/out/
+__pycache__/
+*.pyc
