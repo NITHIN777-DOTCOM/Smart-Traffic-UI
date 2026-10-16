@@ -1,0 +1,43 @@
+# Bridge settings. The PPO repository path lives HERE and nowhere else.
+# Override at run time with the environment variable PPO_REPO.
+ppo_repo: C:\Users\Juju\Desktop\Smart-Traffic-PPO
+# App folder inside the PPO repo (relative to ppo_repo).
+ppo_app_subdir: smart_traffic_ppo
+
+# PPO checkpoint used by --mode ppo. Relative paths resolve against the PPO app folder
+# first, then against bridge/. Override with --checkpoint on the command line.
+# PROVISIONAL: ppo_normal_mlp_best.pth was trained on the OLD reward. Replace it with the
+# lead's ALIGNED checkpoint via scripts/swap_model.py when it arrives.
+checkpoint: models/ppo_normal_mlp_best.pth
+
+# Source clips (UI repo, never modified) and normalised outputs (bridge/out/videos).
+source_videos:
+  West: videos/approach_west.mp4
+  East: videos/approach_east.mp4
+  South: videos/approach_south.mp4
+normalised_videos_dir: bridge/out/videos
+video:
+  width: 1280
+  height: 720
+  fps: 30
+  # Trim length = the shortest source clip, rounded down to whole seconds (East = 600.1 s).
+  duration_s: 600
+
+# Decision cadence in clip seconds (fixed; the model's duration output is logged only).
+decision_interval_s: 30
+yellow_s: 3
+all_red_s: 2
+# Perception sampling: one observation every N frames of the 30 fps clip (5 -> 6 Hz).
+perception_stride: 5
+
+# Controller settings (see HANDOVER_RETRAINING.md / HANDOVER_OBSERVATION_PARITY.md).
+governor: enabled
+legal_mask: enabled
+untrained_inputs: neutralize
+
+# Assumed round-robin signal timing (no signal visible in footage).
+assumed_signals_csv: bridge/data/assumed_signals.csv
+
+# Where run folders go (bridge/out/<mode>_<timestamp>/) and where the UI reads data.
+runs_dir: bridge/out
+ui_data_dir: public/data

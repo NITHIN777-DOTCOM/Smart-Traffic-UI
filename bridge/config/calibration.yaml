@@ -1,0 +1,57 @@
+# Camera calibration for the Chennai T-junction clips.
+#
+# STATUS: UNCALIBRATED. Calibration is postponed. Every value below is the PPO repo's
+# default from configs/replay_yolo26.yaml / configs/camera_yolo26.yaml, carried over
+# unchanged (intersection_point re-centred for the 1280-px frame). Outputs produced with
+# these values are labelled "uncalibrated" in manifest.json, run_info.json and the UI.
+#
+# The runner merges these per-arm blocks into the T-junction replay config at run time.
+status: uncalibrated
+
+# TODO(calibration): real local capture time of second 0 of the clips. The repo default
+# (Tuesday 08:00) is the clock every shipped checkpoint was trained at.
+capture_start_time: "2024-01-02T08:00:00"
+
+arms:
+  West:
+    # TODO(calibration): direction rule. Repo default = "toward_point" with the junction
+    # declared far below the frame, i.e. "inbound" = moving down the image. Not verified
+    # on this footage (run the PPO repo's scripts/verify_lane_direction.py logic once
+    # the camera geometry is known).
+    direction_mode: toward_point
+    intersection_point: [640, 3000]   # TODO(calibration): declared, not surveyed
+    calibration:
+      assumed_pixels_per_metre: 25.0  # TODO(calibration): repo default for 960x540 DETRAC views
+      lane_width_px: null             # TODO(calibration)
+      lane_width_m: null              # TODO(calibration)
+      homography_src_points_px: null  # TODO(calibration): 4 image points on the road plane
+      homography_dst_points_m: null   # TODO(calibration): matching ground points in metres
+  East:
+    direction_mode: toward_point
+    intersection_point: [640, 3000]   # TODO(calibration)
+    calibration:
+      assumed_pixels_per_metre: 25.0  # TODO(calibration)
+      lane_width_px: null             # TODO(calibration)
+      lane_width_m: null              # TODO(calibration)
+      homography_src_points_px: null  # TODO(calibration)
+      homography_dst_points_m: null   # TODO(calibration)
+  South:
+    direction_mode: toward_point
+    intersection_point: [640, 3000]   # TODO(calibration)
+    calibration:
+      assumed_pixels_per_metre: 25.0  # TODO(calibration)
+      lane_width_px: null             # TODO(calibration)
+      lane_width_m: null              # TODO(calibration)
+      homography_src_points_px: null  # TODO(calibration)
+      homography_dst_points_m: null   # TODO(calibration)
+  North:
+    # Blank placeholder camera (no north road). Its values are irrelevant: the clip is
+    # black and the adjacency row/column is zero.
+    direction_mode: toward_point
+    intersection_point: [640, 3000]
+    calibration:
+      assumed_pixels_per_metre: 25.0
+      lane_width_px: null
+      lane_width_m: null
+      homography_src_points_px: null
+      homography_dst_points_m: null

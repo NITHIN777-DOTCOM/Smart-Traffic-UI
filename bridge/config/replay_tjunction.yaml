@@ -1,0 +1,57 @@
+# T-junction replay profile, adapted from the PPO repo's configs/replay_yolo26.yaml.
+#
+# Template: the runner fills ${VIDEOS} (bridge/out/videos) and ${LANES} (bridge/out/lanes),
+# merges per-arm values from calibration.yaml, and writes the resolved copy into the run
+# folder (resolved_replay_config.yaml). Nothing is written into the PPO repo.
+#
+# Junction: West, East and South arms; there is no north road. The model needs four
+# cameras, so North is a blank black clip and its adjacency row and column are zero.
+mode: video_replay_open_loop
+# Relative paths resolve against the PPO app folder: this is the repo's own camera profile
+# (YOLO26n detector, lane_weight.pt, ByteTrack), used unchanged.
+camera_config: configs/camera_yolo26.yaml
+perception_stride: 5            # 30 fps clip -> one observation every 1/6 s
+sync_tolerance_seconds: 0.5
+max_steps: 100000               # bounded by clip length; runner passes its own limit
+physical_output_enabled: false
+capture_start_time: from_calibration
+feature_inputs:
+  arrival_rates: false
+  stopped_vehicle_incident_heuristic: false
+roads:
+  - id: road_north
+    approach: North
+    video: ${VIDEOS}/north_blank.mp4
+    fps: 30
+    lane_cache: ${LANES}/north.json
+  - id: road_east
+    approach: East
+    video: ${VIDEOS}/east.mp4
+    fps: 30
+    lane_cache: ${LANES}/east.json
+  - id: road_south
+    approach: South
+    video: ${VIDEOS}/south.mp4
+    fps: 30
+    lane_cache: ${LANES}/south.json
+  - id: road_west
+    approach: West
+    video: ${VIDEOS}/west.mp4
+    fps: 30
+    lane_cache: ${LANES}/west.json
+# Order North, East, South, West (src/state/phase_topology.APPROACH_ORDER).
+# North row and column are zero: no road, no movements to or from it.
+adjacency:
+  - [0, 0, 0, 0]
+  - [0, 0, 1, 1]
+  - [0, 1, 0, 1]
+  - [0, 1, 1, 0]
+drive_side: left
+# Signal timing used by the bridge (SignalProgram). min_green 0 + a long max_green let the
+# bridge's fixed 30 s cadence own the timing: same phase -> green continues, different
+# phase -> 3 s yellow + 2 s all-red, then the new green.
+signal:
+  min_green_s: 0
+  max_green_s: 100000
+  yellow_s: 3
+  all_red_s: 2

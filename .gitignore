@@ -64,3 +64,7 @@ bridge/.venv/
 bridge/out/
 __pycache__/
 *.pyc
+# Checkpoints copied in by bridge/scripts/swap_model.py (binary, from the PPO repo / lead)
+bridge/models/*
+!bridge/models/.gitkeep
+*.mp4
